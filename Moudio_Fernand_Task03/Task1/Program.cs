@@ -10,66 +10,64 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            int[] arr = new int[20];
+            int[] arr = new int[8];
             var rand = new Random();
             for (int i = 0; i < arr.Length; i++)
             {
-                arr[i] = rand.Next(100);
+                arr[i] = rand.Next(50);
             }
-            Console.WriteLine("Maximun : " + FindMaxElement(arr));
-            Console.WriteLine("Minimun : " + FindMinElement(arr));
+            Console.Write("исходной массив М : ");
+            DisplayInitialArray(arr);
+            Console.WriteLine();
+            Console.Write("Сортировка по возрастанию массив М : ");
+            DisplaySortArray(arr);
+            Console.WriteLine();
+            Console.WriteLine("Максимальное значение массива: " + FindMaxElementArray(arr));
+            Console.WriteLine("Минимальное значение массива: " + FindMinElementArray(arr));
             Console.ReadKey();
 
         }
 
-        static int FindMaxElement(int[] arr)
+        static int[] SortArray(int[] arr)
         {
-            int max = -1;
-            foreach (int element in arr)
-            {
-                if (element > max)
-                {
-                    max = element;
-                }
-            }
-            return max;
-        }
-
-        static int FindMinElement(int[] arr)
-        {
-            int min = 10000;
-            foreach (int element in arr)
-            {
-                if (element < min)
-                {
-                    min = element;
-                }
-            }
-            return min;
-        }
-
-        static int[] sortArray(int[] arr)
-        {
-            int[] ordArray = new int[arr.Length];
-            int min = 100000;
-            bool test = false;
             for(int i = 0; i < arr.Length; i++)
             {
-                if(arr[i] == FindMinElement(arr))
+                for(int j = i; j < arr.Length; j++)
                 {
-                    ordArray[i] = arr[i];
-                }
-                if (arr[i] < min)
-                {
-                    min = arr[i];
-                    test = true;
-                }
-                else
-                {
-
+                    if (arr[i] > arr[j])
+                    {
+                        int temp = arr[j];
+                        arr[j] = arr[i];
+                        arr[i] = temp;
+                    }
                 }
             }
-            
+            return arr;
+        }
+
+        static int FindMaxElementArray(int[] arr)
+        {
+            return arr[arr.Length - 1];
+        }
+
+        static int FindMinElementArray(int[] arr)
+        {
+            return arr[0];
+        }
+
+        static void DisplayInitialArray(int[] arr)
+        {
+            foreach (int element in arr)
+            {
+                Console.Write(element + "   ");
+            }
+        }
+        static void DisplaySortArray (int[] arr)
+        {
+            foreach(int element in SortArray(arr))
+            {
+                Console.Write(element + "   ");
+            }
         }
     }
 }
