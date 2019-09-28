@@ -30,9 +30,9 @@ namespace Task1
 
         static int[] SortArray(int[] arr)
         {
-            for(int i = 0; i < arr.Length; i++)
+            for(int i = 0; i < arr.Length - 1; i++)
             {
-                for(int j = i; j < arr.Length; j++)
+                for(int j = i + 1; j < arr.Length; j++)
                 {
                     if (arr[i] > arr[j])
                     {
@@ -64,6 +64,7 @@ namespace Task1
         }
         static void DisplaySortArray (int[] arr)
         {
+           // Array.Sort(arr)
             foreach(int element in SortArray(arr))
             {
                 Console.Write(element + "   ");
