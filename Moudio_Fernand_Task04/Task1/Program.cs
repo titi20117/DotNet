@@ -10,7 +10,21 @@ namespace Task1
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Введите текст : ");
+            string input = Console.ReadLine();
+            Console.Write("Средняя длина слова во введенной текстовой строке L = {0}", AverageLengthWord(input));
             Console.ReadKey();
+        }
+
+        private static int AverageLengthWord(string input)
+        {
+            int sum = 0;
+            string[] partsInput = input.Split(" ,.?".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < partsInput.Length; i++)
+            {
+                sum += partsInput[i].Length;
+            }
+            return sum / partsInput.Length;
         }
     }
 }
