@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StringLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace Task1
         private static int AverageLengthWord(string input)
         {
             int sum = 0;
-            string[] partsInput = input.Split(" ,.?".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            string[] partsInput = Stringer.GetArrayString(input);
             for (int i = 0; i < partsInput.Length; i++)
             {
                 sum += partsInput[i].Length;
