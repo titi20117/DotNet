@@ -12,30 +12,52 @@ namespace Task3
         static void Main(string[] args)
         {
             DateTime dateTimeIn = DateTime.Now;
+            double value = 12345.67891;
             Console.WriteLine("Формат отображения даты и времени");
-            Console.WriteLine("ru vs en");
-            GetCultureName("ru-RU", "en-EN");
-            Console.WriteLine("en vs invariant");
-            GetCultureName("en-EN", "InvariantCulture");
-            Console.WriteLine("ru vs invariant");
-            GetCultureName("ru-RU", "InvariantCulture");
-            Console.WriteLine("Формат отображения числовых данных");
-            Console.WriteLine("ru vs en");
-            Console.WriteLine("en vs invariant");
-            Console.WriteLine("ru vs invariant");
+            Console.WriteLine("invariant");
+            GetCultureName("invariant", dateTimeIn);
+            Console.WriteLine("ru");
+            GetCultureName("ru-RU", dateTimeIn);
+            Console.WriteLine("en");
+            GetCultureName("en-EN", dateTimeIn);
+            Console.WriteLine("\n\nФормат отображения числовых данных");
+            Console.WriteLine("invariant");
+            GetCultureName("invariant", value);
+            Console.Write("En\n");
+            GetCultureName("en-En", value);
+            Console.WriteLine("Ru\n");
+            GetCultureName("ru-RU", value);
             Console.ReadKey();
         }
 
-        private static void GetCultureName(string cultureName1, string cultureName2)
+        private static void GetCultureName(string cultureName, DateTime date)
         {
-            DateTime dateTimeIn = DateTime.Now;
-            CultureInfo firstCulture = new CultureInfo(cultureName1);
-            CultureInfo secondCulture = new CultureInfo(cultureName2);
-            Console.WriteLine("Date formatted for the {0} culture: {1}",
-                           firstCulture.Name, dateTimeIn.ToString("f", firstCulture));
-            Console.WriteLine("Date formatted for the {0} culture: {1}",
-                           secondCulture.Name, dateTimeIn.ToString("f", secondCulture));
-            //CultureInfo invC = CultureInfo.InvariantCulture;
+            if (cultureName == "invariant")
+            {
+                Console.WriteLine("Date formatted for the {0} culture: {1}",
+                           cultureName, date.ToString("f", CultureInfo.InvariantCulture));
+            }
+            else
+            {
+                Console.WriteLine("Date formatted for the {0} culture: {1}",
+                           cultureName, date.ToString("f", CultureInfo.CreateSpecificCulture(cultureName)));
+
+            }
+        }
+
+        private static void GetCultureName(string cultureName, double value)
+        {
+            if (cultureName == "invariant")
+            {
+                Console.WriteLine("Date formatted for the {0} culture: {1}",
+                           cultureName, value.ToString("f", CultureInfo.InvariantCulture));
+            }
+            else
+            {
+                Console.WriteLine("Date formatted for the {0} culture: {1}",
+                           cultureName, value.ToString("f", CultureInfo.CreateSpecificCulture(cultureName)));
+
+            }
         }
     }
 }
