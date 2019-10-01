@@ -18,7 +18,7 @@ namespace Task5
 
         static void DeleteTag(string text)
         {
-            Regex regex = new Regex(@"</?\w+\s*[\^>]*>");
+            Regex regex = new Regex(@"</?\w+\s*[^<>]*>");
             MatchCollection match = regex.Matches(text);
             if (match.Count > 0)
             {
