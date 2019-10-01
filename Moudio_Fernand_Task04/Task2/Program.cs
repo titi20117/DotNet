@@ -18,32 +18,21 @@ namespace Task2
             string[] partsInput1 = Stringer.GetArrayString(input1);
             string[] partsInput2 = Stringer.GetArrayString(input2);
             Console.Write("Результирующая строка:");
-            Console.Write(ResultingString(partsInput1, partsInput2).Trim());
+            Console.Write(ResultingString(partsInput1, partsInput2, input1).Trim());
             Console.ReadKey();
         }
 
-        private static string ResultingString(string[] partsInput1, string[] partsInput2)
+        private static string ResultingString(string[] partsInput1, string[] partsInput2, string input1)
         {
             string secondInput = "";
             foreach (string el in partsInput2)
                 secondInput += el;
             char[] secondInputArr = GetCharFromString(RemoveRepeatCharInString(secondInput));
-            string resultString = "";
-            for (int i = 0; i < partsInput1.Length; i++)
+            for (int  k = 0; k < secondInputArr.Length; k++)
             {
-                for (int  k = 0; k < secondInputArr.Length; k++)
-                {
-                    if (partsInput1[i].Contains(secondInputArr[k]))
-                    {
-                        string temp = secondInputArr[k] + "" + secondInputArr[k];
-                        string mm = partsInput1[i][partsInput1[i].IndexOf(secondInputArr[k])].ToString();
-                        partsInput1[i] = partsInput1[i].Replace(mm, temp);
-                    }
-
-                }
-                resultString += partsInput1[i] + " ";
+                input1 = input1.Replace(secondInputArr[k].ToString(), secondInputArr[k] + "" + secondInputArr[k]);
             }
-            return resultString;
+            return input1;
         }
 
         static string RemoveRepeatCharInString(string text)

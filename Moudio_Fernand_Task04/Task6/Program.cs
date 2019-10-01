@@ -19,12 +19,13 @@ namespace Task6
 
         private static void DisplayFormatNumber(string input)
         {
-            Regex regex1 = new Regex(@"\w+");
+            Regex regex1 = new Regex(@"\w");
             Regex regex2 = new Regex(@"^\d+");
             Regex regex3 = new Regex(@"^-?\d");
             Regex regex4 = new Regex(@"e");
 
             Match match = regex1.Match(input);
+            //isMatch
             if (match.Success)
             {
                 Console.WriteLine("Это не число");
