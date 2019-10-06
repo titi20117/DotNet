@@ -10,8 +10,11 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            //User user = new User("Fernand");
-            Console.WriteLine("My Name : {0}", user.GetName());
+            Employee employee = new Employee("Fernand", "Elisee", "Moudio", "1995", 5, "Programmer");
+            Console.WriteLine("Сотрудник : {0}", employee.GetFullNameUser());
+            Console.WriteLine("Возраст : {0} года", employee.GetAge());
+            Console.WriteLine("опыт работы : {0} лет", employee.GetWorkExperience());
+            Console.WriteLine("должность : {0}", employee.GetPosition());
             Console.ReadKey();
         }
 
@@ -44,6 +47,25 @@ namespace Task1
 
         public class Employee : User
         {
+            private int workExperience;
+            private string position;
+
+            public Employee(string firstName, string middleName, string lastName, string dateOfBirth, int theWorkExperience, string thePosition)
+                :base(firstName, middleName, lastName, dateOfBirth)
+            {
+                this.workExperience = theWorkExperience;
+                this.position = thePosition;
+            }
+
+            public int GetWorkExperience()
+            {
+                return this.workExperience;
+            }
+
+            public string GetPosition()
+            {
+                return position;
+            }
 
         }
     }
