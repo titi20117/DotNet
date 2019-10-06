@@ -12,14 +12,38 @@ namespace Task4
         {
             MyString myString = new MyString();
             MyString myString2 = new MyString();
-            
-            Console.Write("Введите текст : ");
-            myString.firstText = Console.ReadLine();
-            myString2.secondText = "world";
-            myString2.firstText = "dsdsds";
-            myString2.secondText = "fwfdzf";
-            Console.WriteLine(myString + myString2);
-            Console.WriteLine(myString.Equals(myString2));
+
+            myString.firstText = "hello world";
+            myString2.firstText = " Fernand Moudio";
+            //Добавление
+            MyString sum = myString + myString2;
+            Console.WriteLine("добавление строку в конце текущего : {0}", sum);
+            //Удаление
+            MyString subMyString = new MyString();
+            subMyString.firstText = "world";
+            MyString del = myString - subMyString;
+            Console.WriteLine("Удаление подстроку из текущей строки : {0}", del);
+            //Сравнение
+            MyString aStr = new MyString();
+            aStr.firstText = "hello world";
+            MyString comp = myString == myString2;
+            MyString comp2 = myString == aStr;
+            if(comp.GetTest())
+            {
+                Console.WriteLine("Объект равный");
+            }
+            else
+            {
+                Console.WriteLine("Объект неравный");
+            }
+            if (comp2.GetTest())
+            {
+                Console.WriteLine("Объект равный");
+            }
+            else
+            {
+                Console.WriteLine("Объект неравный");
+            }
             Console.ReadKey();
         }
 
@@ -27,31 +51,42 @@ namespace Task4
         {
             public string firstText { get; set; }
             public char[] firstTextToArrayChar { get { return firstText.ToCharArray(); } }
-            public string secondText { get; set; }
-            public char[] secondTextToArrayChar { get { return secondText.ToCharArray(); } }
+            private bool test;
 
-            //override Eq (MyString ms1, MyString ms2);
-            public static MyString operator +(MyString firstText, MyString secondText) 
-            { 
-                return firstText + secondText;
-            }
-            public static MyString operator -(MyString firstText, MyString secondText)
+            public bool GetTest()
             {
-                return firstText - secondText;
+                return test;
             }
-            public override bool operator ==(MyString obj1, MyString obj2) 
+            public static MyString operator +(MyString obj, MyString obj2) 
             {
-                if (obj1 == obj2)
-                    return true;
-                else
-                    return false; 
+                MyString myString = new MyString();
+                myString.firstText = obj.firstText + obj2.firstText;
+                return myString;
             }
-            public override bool operator !=(MyString obj1, MyString obj2) 
+            public static MyString operator -(MyString obj, MyString obj2)
             {
-                if (obj1 != obj2)
-                    return true;
-                else
-                    return false;
+                MyString myString = new MyString();
+                int n = obj.firstText.IndexOf(obj2.firstText);
+                myString.firstText = obj.firstText.Remove(n, obj2.firstText.Length);
+                return myString;
+            }
+            public static MyString operator ==(MyString obj, MyString obj2) 
+            {
+                MyString myString = new MyString();
+                myString.test = obj.firstText == obj2.firstText;
+                return myString; 
+            }
+
+            public static MyString operator !=(MyString obj, MyString obj2) 
+            {
+                MyString myString = new MyString();
+                myString.test = obj.firstText != obj2.firstText;
+                return myString;
+            }
+
+            public override string ToString()
+            {
+                return (String.Format("{0}", firstText));
             }
         }
     }
