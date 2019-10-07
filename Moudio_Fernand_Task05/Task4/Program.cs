@@ -10,83 +10,73 @@ namespace Task4
     {
         static void Main(string[] args)
         {
-            MyString myString = new MyString();
-            MyString myString2 = new MyString();
+            MyString myString = new MyString("Hello World");
+            MyString myString2 = new MyString("Fernand Moudio");
 
-            myString.firstText = "hello world";
-            myString2.firstText = " Fernand Moudio";
+            Console.WriteLine(myString);
+
             //Добавление
             MyString sum = myString + myString2;
             Console.WriteLine("добавление строку в конце текущего : {0}", sum);
+            
             //Удаление
-            MyString subMyString = new MyString();
-            subMyString.firstText = "world";
+            MyString subMyString = new MyString("World");
             MyString del = myString - subMyString;
             Console.WriteLine("Удаление подстроку из текущей строки : {0}", del);
+            
             //Сравнение
-            MyString aStr = new MyString();
-            aStr.firstText = "hello world";
-            MyString comp = myString == myString2;
-            MyString comp2 = myString == aStr;
-            if(comp.GetTest())
-            {
-                Console.WriteLine("Объект равный");
-            }
-            else
-            {
-                Console.WriteLine("Объект неравный");
-            }
-            if (comp2.GetTest())
-            {
-                Console.WriteLine("Объект равный");
-            }
-            else
-            {
-                Console.WriteLine("Объект неравный");
-            }
+            MyString aStr = new MyString("Hello orld");
+            Console.WriteLine(myString == null);
             Console.ReadKey();
         }
 
         public class MyString
         {
-            public string firstText { get; set; }
-            public char[] firstTextToArrayChar { get { return firstText.ToCharArray(); } }
-            private bool test;
+            private char[] firstTextToArrayChar;
 
-            public bool GetTest()
+            public MyString(string firstText)
             {
-                return test;
+                this.firstTextToArrayChar = firstText.ToCharArray();
             }
-            public static MyString operator +(MyString obj, MyString obj2) 
+          
+            public static MyString operator +(MyString obj, MyString obj2)
             {
-                MyString myString = new MyString();
-                myString.firstText = obj.firstText + obj2.firstText;
+                MyString myString = new MyString("");
+                char[] charArray = new char[obj.firstTextToArrayChar.Length + obj2.firstTextToArrayChar.Length];
+                obj.firstTextToArrayChar.CopyTo(charArray, 0);
+                obj2.firstTextToArrayChar.CopyTo(charArray, obj.firstTextToArrayChar.Length);
+                myString.firstTextToArrayChar = charArray;
                 return myString;
             }
             public static MyString operator -(MyString obj, MyString obj2)
             {
-                MyString myString = new MyString();
-                int n = obj.firstText.IndexOf(obj2.firstText);
-                myString.firstText = obj.firstText.Remove(n, obj2.firstText.Length);
-                return myString;
+                string objStr = obj.ToString();
+                string obj2Str = obj2.ToString();
+                string result;
+                result = objStr.Replace(obj2Str, "");
+                return new MyString(result);
             }
-            public static MyString operator ==(MyString obj, MyString obj2) 
+            public static bool operator ==(MyString obj, MyString obj2)
             {
-                MyString myString = new MyString();
-                myString.test = obj.firstText == obj2.firstText;
-                return myString; 
+                if ((object)obj == null || (object)obj2 == null || (obj.firstTextToArrayChar.Length != obj2.firstTextToArrayChar.Length))
+                    return false;
+  
+                for(int i = 0; i <  obj.firstTextToArrayChar.Length; i++)
+                {
+                    if (obj.firstTextToArrayChar[i] != obj2.firstTextToArrayChar[i])
+                        return false;
+                }
+                return true;
             }
 
-            public static MyString operator !=(MyString obj, MyString obj2) 
+            public static bool operator !=(MyString obj, MyString obj2)
             {
-                MyString myString = new MyString();
-                myString.test = obj.firstText != obj2.firstText;
-                return myString;
+                return !(obj == obj2);
             }
 
             public override string ToString()
             {
-                return (String.Format("{0}", firstText));
+                return new string(firstTextToArrayChar);
             }
         }
     }

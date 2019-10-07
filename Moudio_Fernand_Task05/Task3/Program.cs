@@ -11,13 +11,10 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            Triangle triangle = new Triangle();
-            triangle.sideA = 4;
-            triangle.sideB = 6;
-            triangle.sideC = 8;
-            Console.WriteLine("Треуголник со сторонами а: {0}; а: {1}; а: {2}", triangle.sideA, triangle.sideB, triangle.sideC);
-            Console.WriteLine("Периметр треуголника P:= {0}", triangle.GetLength().ToString("F", CultureInfo.CreateSpecificCulture("en-US")));
-            Console.WriteLine("Площадь треуголника S:= {0}", triangle.GetArea().ToString("C", CultureInfo.CreateSpecificCulture("en-US")));
+            Triangle triangle = new Triangle { sideA = 4, sideB = 6, sideC = 8 };
+            Console.WriteLine("Треуголник со сторонами A: {0}; B: {1}; C: {2}", triangle.sideA, triangle.sideB, triangle.sideC);
+            Console.WriteLine("Периметр треуголника P:= {0}", triangle.GetLength());
+            Console.WriteLine("Площадь треуголника S:= {0}", triangle.GetArea());
             Console.ReadKey();
         }
 

@@ -10,7 +10,7 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            Ring ring = new Ring(0, 0, 3, 10);
+            Ring ring = new Ring(0, 0, 3, -10);
             Console.WriteLine("Кольцо с координатом О:({0}, {1})\nВнутренниq радиуc r={2}\nВнешний радиус R={3}"
                 , ring.GetX(), ring.GetY(), ring.GetRadius(), ring.GetExternRadius());
             Console.WriteLine("Периметр кольцо P:= {0}", ring.GetPerim());
@@ -25,11 +25,11 @@ namespace Task2
             protected int radius;
             protected double perimetr { get { return 2 * Math.PI * radius; } }
             protected double aire { get { return Math.PI * Math.Pow(radius, 2); } }
-            public Round(int X, int Y, int innerRadius)
+            public Round(int X, int Y, int radius)
             {
                 this.x = X;
                 this.y = Y;
-                this.radius = innerRadius;
+                this.radius = radius;
             }
 
             public int GetX()
@@ -81,6 +81,10 @@ namespace Task2
             {
                 return aireExtern - base.GetArea();
 
+            }
+            public override string ToString()
+            {
+                return String.Format("O({0}, {1}) {2}{3}", GetX(), GetY(), GetRadius(), GetExternRadius());
             }
 
         }

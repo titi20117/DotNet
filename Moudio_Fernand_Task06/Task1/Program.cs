@@ -10,11 +10,8 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            Employee employee = new Employee("Fernand", "Elisee", "Moudio", "1995", 5, "Programmer");
-            Console.WriteLine("Сотрудник : {0}", employee.GetFullNameUser());
-            Console.WriteLine("Возраст : {0} года", employee.GetAge());
-            Console.WriteLine("опыт работы : {0} лет", employee.GetWorkExperience());
-            Console.WriteLine("должность : {0}", employee.GetPosition());
+            Employee employee = new Employee("Fernand", "Elisee", "Moudio", "1995", "2015", "Programmer");
+            Console.WriteLine("{0}", employee);
             Console.ReadKey();
         }
 
@@ -43,28 +40,35 @@ namespace Task1
             {
                 return this.firstName + " " + this.middleName + " " + this.lastName;
             }
+
+            public override string ToString()
+            {
+                return (String.Format("Сотрудник: {0}\nВозраст : {1}", this.GetFullNameUser(), this.GetAge()));
+            }
         }
 
         public class Employee : User
         {
-            private int workExperience;
+            private string dateStartWork;
             private string position;
+            public int workExperience { get { return int.Parse(DateTime.Now.Year.ToString()) - int.Parse(dateStartWork); } }
 
-            public Employee(string firstName, string middleName, string lastName, string dateOfBirth, int theWorkExperience, string thePosition)
+            public Employee(string firstName, string middleName, string lastName, string dateOfBirth, string dateStartWork, string thePosition)
                 :base(firstName, middleName, lastName, dateOfBirth)
             {
-                this.workExperience = theWorkExperience;
+                this.dateStartWork = dateStartWork;
                 this.position = thePosition;
-            }
-
-            public int GetWorkExperience()
-            {
-                return this.workExperience;
             }
 
             public string GetPosition()
             {
                 return position;
+            }
+
+            public override string ToString()
+            {
+                return (String.Format("Сотрудник : {0}\nВозраст : {1}\nОпыт работы : {2}\nДолжность : {3}", this.GetFullNameUser(),
+                    this.GetAge(), this.workExperience, this.GetPosition()));
             }
 
         }
