@@ -10,7 +10,15 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            Employee employee = new Employee("Fernand", "Elisee", "Moudio", "1995", "2015", "Programmer");
+            Employee employee = new Employee
+                (
+                    "Fernand", 
+                    "Elisee", 
+                    "Moudio", 
+                    new DateTime(1995, 12, 25), 
+                    new DateTime(2013, 11, 23), 
+                    "Programmer"
+                );
             Console.WriteLine("{0}", employee);
             Console.ReadKey();
         }
@@ -20,10 +28,10 @@ namespace Task1
             protected string firstName { get; set; }
             protected string middleName { get; set; }
             protected string lastName { get; set; }
-            protected string dateOfBirth { get; set; }
-            private int age { get { return int.Parse(DateTime.Now.Year.ToString()) - int.Parse(dateOfBirth); } }
+            protected DateTime dateOfBirth { get; set; }
+            private int age { get { return (DateTime.Now - dateOfBirth).Days/365; } }
 
-            public User(string firstName, string middleName, string lastName, string dateOfBirth)
+            public User(string firstName, string middleName, string lastName, DateTime dateOfBirth)
             {
                 this.firstName = firstName;
                 this.middleName = middleName;
@@ -49,11 +57,11 @@ namespace Task1
 
         public class Employee : User
         {
-            private string dateStartWork;
+            private DateTime dateStartWork;
             private string position;
-            public int workExperience { get { return int.Parse(DateTime.Now.Year.ToString()) - int.Parse(dateStartWork); } }
+            public int workExperience { get { return (DateTime.Now - dateStartWork).Days/365; } }
 
-            public Employee(string firstName, string middleName, string lastName, string dateOfBirth, string dateStartWork, string thePosition)
+            public Employee(string firstName, string middleName, string lastName, DateTime dateOfBirth, DateTime dateStartWork, string thePosition)
                 :base(firstName, middleName, lastName, dateOfBirth)
             {
                 this.dateStartWork = dateStartWork;
