@@ -26,18 +26,18 @@ namespace Task1
 
     public class User
     {
-        protected string firstName { get; set; }
-        protected string middleName { get; set; }
-        protected string lastName { get; set; }
-        protected DateTime dateOfBirth { get; set; }
-        private int age { get { return (DateTime.Now - dateOfBirth).Days / 365; } }
+        protected string FirstName { get; set; }
+        protected string MiddleName { get; set; }
+        protected string LastName { get; set; }
+        protected DateTime DateOfBirth { get; set; }
+        private int age { get { return (DateTime.Now - DateOfBirth).Days / 365; } }
 
         public User(string firstName, string middleName, string lastName, DateTime dateOfBirth)
         {
-            this.firstName = firstName;
-            this.middleName = middleName;
-            this.lastName = lastName;
-            this.dateOfBirth = dateOfBirth;
+            this.FirstName = firstName;
+            this.MiddleName = middleName;
+            this.LastName = lastName;
+            this.DateOfBirth = dateOfBirth;
         }
 
         public int GetAge()
@@ -47,7 +47,7 @@ namespace Task1
 
         public string GetFullNameUser()
         {
-            return this.firstName + " " + this.middleName + " " + this.lastName;
+            return this.FirstName + " " + this.MiddleName + " " + this.LastName;
         }
 
         public override string ToString()
@@ -58,14 +58,14 @@ namespace Task1
 
     public class Employee : User
     {
-        private DateTime dateStartWork;
+        private DateTime DateStartWork;
         private string position;
-        public int workExperience { get { return (DateTime.Now - dateStartWork).Days / 365; } }
+        public int workExperience { get { return (DateTime.Now - DateStartWork).Days / 365; } }
 
         public Employee(string firstName, string middleName, string lastName, DateTime dateOfBirth, DateTime dateStartWork, string thePosition)
             : base(firstName, middleName, lastName, dateOfBirth)
         {
-            this.dateStartWork = dateStartWork;
+            this.DateStartWork = dateStartWork;
             this.position = thePosition;
         }
 
