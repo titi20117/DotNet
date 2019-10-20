@@ -75,16 +75,26 @@ namespace Task1
 
         public bool Remove (T el)
         {
-            bool result = true;
             for (int i = 0; i < array.Count(); i++)
             {
                 T item = (T)array[i];
+                if (item == null)
+                {
+                    return false;
+                }
                 if(item.Equals(el))
                 {
-
+                    array[i] = default(T);
+                    T temp = array[i];
+                    for (int j = i; j < array.Count() - 1; j++)
+                    {
+                        array[j] = array[j + 1];
+                        array[j + 1] = temp;
+                    }
+                    break;
                 }
             }
-            return result;
+            return true;
         }
 
         public T GetElementArray (int index)

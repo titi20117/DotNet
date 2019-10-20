@@ -17,7 +17,8 @@ namespace Task1
             dynamicArray.Add("Maroufatou");
             string[] myMiddleNames = { "Adamou", "Assouma", "Njoli", "Mbende" };
             dynamicArray.AddRange(myMiddleNames);
-            dynamicArray.Remove("Adamou");
+            bool removingItem = dynamicArray.Remove("Adamou");
+            Console.WriteLine(removingItem);
             Console.ReadKey();
         }
     }
