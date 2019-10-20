@@ -97,6 +97,43 @@ namespace Task1
             return true;
         }
 
+        public void Insert (T el, int index)
+        {
+            T[] newArr = new T[array.Length];
+            if (index < 0 || index >= nbElts)
+            {
+                throw new ArgumentOutOfRangeException("index", "Выход за границу массива");
+            }
+            else
+            {
+                for (int i = 0; i < array.Length; i++)
+                {
+                    if (nbElts >= capacity)
+                    {
+                        capacity *= 2;
+                        T[] CloningArr = new T[capacity];
+                        for (int i = 0; i < array.Length; i++)
+                        {
+                            CloningArr[i] = array[i];
+                        }
+                        array = CloningArr;
+                    }
+                    nbElts++;
+                    if (index == i)
+                    {
+                        newArr[i] = el;
+                        for (int j = i; j < array.Length - 1; j++)
+                        {
+                            T temp = array[j];
+                            array[j] = el;
+                            array[j + 1] = temp;
+                        }
+                    }
+                    newArr[i] = array[i];
+                }
+            }
+        }
+
         public T GetElementArray (int index)
         {
             if (index < 0 || index <= nbElts)
