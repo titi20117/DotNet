@@ -140,7 +140,6 @@ namespace Task1
             if (index < 0 || index >= nbElts)
             {
                 throw new ArgumentOutOfRangeException("index", "Выход за границу массива");
-                //return default(T);
             }
             return array[index];
         }
