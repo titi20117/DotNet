@@ -19,6 +19,9 @@ namespace Task1
             dynamicArray.AddRange(myMiddleNames);
             dynamicArray.Insert("Castro", 3);
             bool removingItem = dynamicArray.Remove("Adamou");
+            Console.WriteLine("Element2 {0}", dynamicArray.GetElementArray(2));
+            Console.WriteLine("Capacity {0}", dynamicArray.Capacity);
+            Console.WriteLine("Length {0}", dynamicArray.Length);
             Console.WriteLine(removingItem);
 
             Console.ReadKey();

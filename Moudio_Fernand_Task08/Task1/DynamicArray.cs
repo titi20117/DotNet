@@ -12,10 +12,8 @@ namespace Task1
         private int nbElts;
         private T[] array;
 
-        public void NbreElts() 
-        {
-            nbElts = array.Length;        
-        }
+        public int Length { get { return this.nbElts; } }
+        public int Capacity { get { return this.capacity; } }
         //1
         public DynamicArray ()
         {
@@ -139,9 +137,10 @@ namespace Task1
 
         public T GetElementArray (int index)
         {
-            if (index < 0 || index <= nbElts)
+            if (index < 0 || index >= nbElts)
             {
-                return default(T);
+                throw new ArgumentOutOfRangeException("index", "Выход за границу массива");
+                //return default(T);
             }
             return array[index];
         }
