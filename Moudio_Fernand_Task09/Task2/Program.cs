@@ -10,6 +10,8 @@ namespace Task2
     {
         static void Main(string[] args)
         {
+            DynamicArray<int> dynamicArray = new DynamicArray<int>();
         }
     }
+
 }
