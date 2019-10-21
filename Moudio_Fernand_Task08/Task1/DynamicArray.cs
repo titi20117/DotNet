@@ -99,37 +99,40 @@ namespace Task1
 
         public void Insert (T el, int index)
         {
-            T[] newArr = new T[array.Length];
+            T[] newArr = new T[capacity];
+            for (int i = 0; i < array.Length; i++) 
+            {
+                newArr[i] = array[i];
+            }
+
             if (index < 0 || index >= nbElts)
             {
                 throw new ArgumentOutOfRangeException("index", "Выход за границу массива");
             }
             else
             {
-                for (int i = 0; i < array.Length; i++)
+                for (int i = 0; i < newArr.Length; i++)
                 {
-                    if (nbElts >= capacity)
-                    {
-                        capacity *= 2;
-                        T[] CloningArr = new T[capacity];
-                        for (int i = 0; i < array.Length; i++)
-                        {
-                            CloningArr[i] = array[i];
-                        }
-                        array = CloningArr;
-                    }
-                    nbElts++;
                     if (index == i)
                     {
-                        newArr[i] = el;
-                        for (int j = i; j < array.Length - 1; j++)
+                        if (nbElts >= capacity)
                         {
-                            T temp = array[j];
-                            array[j] = el;
-                            array[j + 1] = temp;
+                            capacity *= 2;
+                            T[] CloningArr = new T[capacity];
+                            for (int k = 0; k < array.Length; k++)
+                            {
+                                CloningArr[k] = array[k];
+                            }
+                            array = CloningArr;
+                        }
+                        nbElts++;
+
+                        array[i] = el;
+                        for (int j = i+1; j < newArr.Length - 1; j++)
+                        {
+                            array[j] = newArr[j-1];
                         }
                     }
-                    newArr[i] = array[i];
                 }
             }
         }
