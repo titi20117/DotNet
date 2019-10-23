@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
-    public class DynamicArray<T>
+    public class DynamicArray<T> : IEnumerable<T>
     {
         private int capacity;
         private int nbElts;
@@ -24,8 +24,26 @@ namespace Task2
 
         public DynamicArray(IEnumerable<T> ts)
         {
-            //this.capacity = ts.Count();
+            this.capacity = ts.Count();
             array = new T[ts.Count()];
+            for (int i = 0; i < ts.Count(); i++) {
+                array[i] = ts.ElementAt(i);
+            }
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                yield return array[i];
+
+                if (i == 5)
+                    yield break;
+            }
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
         //2
