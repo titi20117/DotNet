@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,20 +16,22 @@ namespace Task1
             LinkedList<int> linkList = new LinkedList<int>(numbers);
             
             PrintList(list);
-            RemoveEachSecondItem(list);
-            RemoveEachSecondItem(linkList.ToList());
+            RemoveEachSecondItem<int>(list);
+            RemoveEachSecondItem<int>(linkList);
             Console.ReadKey();
         }
 
-        static void RemoveEachSecondItem<T>(T list) where T : IList<int>
+        static void RemoveEachSecondItem<T>(ICollection<int> list)
         {
             bool delete = false;
             while (list.Count > 1)
             {
-                for (int i = 0; i < list.Count; i++)
+                for (var i = 0; i < list.Count; i++)
                 {
-                    if (delete)
-                        list.RemoveAt(i--);
+                    if (delete) 
+                    {
+                        list.Remove(list.ElementAt(i--));
+                    }    
                     delete = !delete;
                 }
                 PrintList(list);
