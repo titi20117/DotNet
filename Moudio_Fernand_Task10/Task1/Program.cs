@@ -10,6 +10,10 @@ namespace Task1
     {
         static void Main(string[] args)
         {
+            string[] arr = { "fer", "aaaaa", "db", "da", "sdsd", "d", "aassadaf", "ddssa" };
+            SortArrayAscendant sortArray = new SortArrayAscendant(arr);
+            sortArray.DemoSort(sortArray.Array);
+            Console.ReadKey();
         }
     }
 }
