@@ -12,7 +12,10 @@ namespace Task1
         {
             string[] arr = { "fer", "aaaaa", "db", "da", "sdsd", "d", "aassadaf", "ddssa" };
             SortArrayAscendant sortArray = new SortArrayAscendant(arr);
-            sortArray.DemoSort(sortArray.Array);
+            sortArray.SortOperation(sortArray.Array, sortArray.GetArrayLengthAscending);
+            sortArray.SortOperation(sortArray.Array, sortArray.GetArrayWordAscending);
+            foreach (var el in sortArray.Array)
+                Console.WriteLine(el);
             Console.ReadKey();
         }
     }

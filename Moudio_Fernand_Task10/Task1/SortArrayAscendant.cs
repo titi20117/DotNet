@@ -5,7 +5,7 @@ namespace Task1
     public class SortArrayAscendant
     {
         private string[] array;
-        private delegate void DelegateSort(string[] arr);
+        public delegate void Operation(string[] arr);
         public SortArrayAscendant(string[] arr)
         {
             this.array = arr;
@@ -15,7 +15,11 @@ namespace Task1
             get { return array; }
         }
 
-        private void GetArrayLengthAscending(string[] arr)
+        public void SortOperation(string[] arr, Operation action)
+        {
+            action(arr);
+        }
+        public void GetArrayLengthAscending(string[] arr)
         {
             for (int i = 0; i < arr.Length - 1; i++)
             {
@@ -41,7 +45,7 @@ namespace Task1
             return false;
         }
 
-        private void GetArrayWordAscending(string[] arr)
+        public void GetArrayWordAscending(string[] arr)
         {
             for (int i = 0; i < arr.Length - 1; i++)
             {
@@ -60,19 +64,5 @@ namespace Task1
             }
         }
 
-        public void DemoSort(string[] arr)
-        {
-            DelegateSort tri = delegate (string[] leTableau)
-            {
-                GetArrayLengthAscending(leTableau);
-                GetArrayWordAscending(leTableau);
-                foreach (string i in leTableau)
-                {
-                    Console.WriteLine(i);
-                }
-                Console.WriteLine();
-            };
-            tri(arr);
-        }
     }
 }
