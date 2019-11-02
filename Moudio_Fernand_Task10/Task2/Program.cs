@@ -13,20 +13,14 @@ namespace Task2
         {
             Person fernand = new Person("Fernand", 7);
             Person elisee = new Person("Elisee", 8);
+            elisee.Came += fernand.Greet;
 
             Person sylvain = new Person("Syvain", 14);
-            Person corine = new Person("Corine", 18);
-
-            fernand.Time = sylvain.Time;
             sylvain.Came += fernand.Greet;
-            
-            elisee.Time = sylvain.Time; 
             sylvain.Came += elisee.Greet;
 
-            fernand.Time = corine.Time;
+            Person corine = new Person("Corine", 18);
             corine.Came += fernand.Greet;
-
-            elisee.Time = corine.Time;
             corine.Came += elisee.Greet;
 
             Thread.Sleep(6000);

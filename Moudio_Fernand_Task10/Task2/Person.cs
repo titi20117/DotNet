@@ -7,26 +7,33 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
-    public delegate void Message(string name);
-    class Person
+    public class PersonTimeArgs : EventArgs
+    {
+        public Person Person { get; set; }
+    }
+    public delegate void Message(string name, PersonTimeArgs args);
+    public class Person
     {
         public string Name { get; private set; }
         public int Time { get; set; }
-        public void Greet(string nextPerson)
+        public void Greet(string nextPerson, PersonTimeArgs person)
         {
-            if (Time < 12)
+            int time = person.Person.Time;
+            Console.WriteLine(person.Person.Name);
+            if (time < 12)
                 Console.WriteLine("Good Morning, {0}!, {1} said.", nextPerson, Name);
-            else if((Time > 11) && (Time < 18))
+            else if((time > 11) && (time < 18))
                 Console.WriteLine("Good Afternoon, {0}!, {1} said.", nextPerson, Name);
             else
                 Console.WriteLine("Good Evening, {0}!, {1} said.", nextPerson, Name);
         }
         public event Message Came;
 
-        public void OnCame()
+        public void OnCame(Person person)
         {
+            
             if (Came != null)
-                Came(Name);
+                Came(Name, new PersonTimeArgs() { Person = person});
         }
 
         public Person(string name, int time)
@@ -36,7 +43,7 @@ namespace Task2
             Task.Factory.StartNew(() =>
             {
                 Thread.Sleep(5000);
-                OnCame();
+                OnCame(new Person(name, time));
             });
         }
     }
