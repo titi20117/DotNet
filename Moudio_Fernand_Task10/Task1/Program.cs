@@ -13,7 +13,8 @@ namespace Task1
             string[] arr = { "fer", "aaaaa", "db", "da", "sdsd", "d", "aassadaf", "ddssa" };
             SortArrayAscendant sortArray = new SortArrayAscendant(arr);
             sortArray.SortOperation(sortArray.Array, sortArray.GetArrayLengthAscending);
-            sortArray.SortOperation(sortArray.Array, sortArray.GetArrayWordAscending);
+            SortArrayAscendant.Operation operation = sortArray.GetArrayWordAscending;
+            //operation += sortArray.GetArrayWordAscending;
             foreach (var el in sortArray.Array)
                 Console.WriteLine(el);
             Console.ReadKey();

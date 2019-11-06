@@ -23,7 +23,9 @@ namespace Task2
             corine.Came += fernand.Greet;
             corine.Came += elisee.Greet;
 
-            Thread.Sleep(6000);
+            fernand.GoHome += elisee.Forgive;
+
+            Thread.Sleep(1000);
             Console.ReadKey();
         }
     }
