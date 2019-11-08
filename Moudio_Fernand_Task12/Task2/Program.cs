@@ -11,8 +11,7 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            DirectoryInfo dir = new DirectoryInfo(@"C:\Epam_DotNetCourse_2019\DotNetCourse\Moudio_Fernand_Task12\Task1");
-            dir.Create();
+            
         }
     }
 }

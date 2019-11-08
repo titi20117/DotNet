@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task1
 {
@@ -11,13 +7,21 @@ namespace Task1
         static void Main(string[] args)
         {
             string[] arr = { "fer", "aaaaa", "db", "da", "sdsd", "d", "aassadaf", "ddssa" };
-            SortArrayAscendant sortArray = new SortArrayAscendant(arr);
-            sortArray.SortOperation(sortArray.Array, sortArray.GetArrayLengthAscending);
-            SortArrayAscendant.Operation operation = sortArray.GetArrayWordAscending;
-            //operation += sortArray.GetArrayWordAscending;
-            foreach (var el in sortArray.Array)
+            SortArrayAscendant<string> array = new SortArrayAscendant<string>();
+            array.CustomSort(arr, sortingMethod);
+            foreach (var el in arr)
                 Console.WriteLine(el);
             Console.ReadKey();
+        }
+
+        static bool sortingMethod(string s1, string s2)
+        {
+            for (int i = 0; i < (s1.Length > s2.Length ? s2.Length : s1.Length); i++)
+            {
+                if (s1.ToCharArray()[i] < s2.ToCharArray()[i]) return false;
+                if (s1.ToCharArray()[i] > s2.ToCharArray()[i]) return true;
+            }
+            return false;
         }
     }
 }

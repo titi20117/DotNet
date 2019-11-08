@@ -11,19 +11,19 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            Person fernand = new Person("Fernand", 7);
-            Person elisee = new Person("Elisee", 8);
-            elisee.Came += fernand.Greet;
+            Person person1 = new Person("Fernand", 7);
+            Person person2 = new Person("Anton", 8);
+            Person person3 = new Person("Andre", 13);
+            Person person4 = new Person("Corine", 18);
+            PersonGreeting personGreeting = new PersonGreeting();
 
-            Person sylvain = new Person("Syvain", 14);
-            sylvain.Came += fernand.Greet;
-            sylvain.Came += elisee.Greet;
-
-            Person corine = new Person("Corine", 18);
-            corine.Came += fernand.Greet;
-            corine.Came += elisee.Greet;
-
-            fernand.GoHome += elisee.Forgive;
+            Console.WriteLine("Greeting Person.....");
+            personGreeting.PersonGreetedWhenCome += personGreeting.Greet;
+            Console.WriteLine("come");
+            personGreeting.Greet(person1, new PersonEventArgs { Person = person2});
+            personGreeting.Greet(person1, new PersonEventArgs { Person = person3 });
+            personGreeting.Greet(person1, new PersonEventArgs { Person = person4 });
+            personGreeting.GreetWhenBackHome(person2, new PersonEventArgs { Person = person1 });
 
             Thread.Sleep(1000);
             Console.ReadKey();

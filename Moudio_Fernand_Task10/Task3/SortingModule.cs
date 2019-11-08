@@ -31,8 +31,7 @@ namespace Task3
 
         public void RunSortInNewThread(T[] arr, SortingMethod<T> sortingMethod)
         {
-            ThreadStart thStart = new ThreadStart(() => CustomSort(arr, sortingMethod));
-            Thread th = new Thread(thStart);
+            Thread th = new Thread(() => CustomSort(arr, sortingMethod));
             th.Start();
         }
     }

@@ -12,12 +12,12 @@ namespace Task3
         {
             string[] array = new string[] { "bacd", "abcd", "ff", "rlk", "r", "cghjk", "dghjk" };
             SortingModule<string> arr = new SortingModule<string>();
-            SortingModule<string>[] SortedArray = new SortingModule<string>[] { };
+            //SortingModule<string>[] SortedArray = new SortingModule<string>[] { };
 
-            //arr.CustomSort(SortedArray, new Func<string, string, bool>(sortingMethod));
-            //arr.SortingFinished += arr_SortingFinished;
-            //arr.RunSortInNewThread(SortedArray, new Func<string, string, bool>(sortingMethod));
-            SortingModule<string> sortingModule = new SortingModule<string>();
+            arr.CustomSort(array, sortingMethod);
+            arr.SortingFinished += arr_SortingFinished;
+            arr.RunSortInNewThread(array, sortingMethod);
+            //SortingModule<string> sortingModule = new SortingModule<string>();
             
             for (int i = 0; i < array.Length; i++)
             {
@@ -27,9 +27,19 @@ namespace Task3
             Console.ReadLine();
         }
 
-        private static bool sortingMethod(string arg1, string arg2)
+        private static void arr_SortingFinished(object sender, SortingEventArgs<string> e)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("thread is finish!");
+        }
+
+        private static bool sortingMethod(string s1, string s2)
+        {
+            for (int i = 0; i < (s1.Length > s2.Length ? s2.Length : s1.Length); i++)
+            {
+                if (s1.ToCharArray()[i] < s2.ToCharArray()[i]) return false;
+                if (s1.ToCharArray()[i] > s2.ToCharArray()[i]) return true;
+            }
+            return false;
         }
     }
 }
