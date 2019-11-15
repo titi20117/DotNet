@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Task2
@@ -12,35 +13,51 @@ namespace Task2
         static void Main(string[] args)
         {
             Console.WriteLine("Выберите режим работы программы\r\n1.Режим наблюдателя\r\n2.Режим отката\r\nДля выхода из программы нажмите любую кнопку");
-            if (Console.Read() == '1')
+            string key = Console.ReadLine();
+            if (key == "1")
             {
                 Observer();
                 Console.ReadKey();
             }
-            if (Console.Read() == '2')
+            if (key == "2")
             {
-                Console.WriteLine("В разработке");
+                Console.WriteLine("Введите дату и время в формате MM.dd.yyyy HH mm");
+                Console.Write("Дата : ");
+                string date = Console.ReadLine();
+                RoolBackFile(date, pathSystem, path);
                 Console.ReadKey();
             }
         }
-        private static string path = "C:\\Exchange";
-        private static string pathSystem = "C:\\ExchangeSystem";
-        private static FileSystemWatcher watcher = new FileSystemWatcher();
+        private static string path = @"C:\Epam_DotNetCourse_2019\DotNetCourse\Moudio_Fernand_Task12\Task2\OriganalDir\Original_Files";
+        private static string pathSystem = @"C:\Epam_DotNetCourse_2019\DotNetCourse\Moudio_Fernand_Task12\Task2\OriganalDir\Dest";
         public static void Observer()
         {
-            Console.WriteLine("Включён режим наблюдателя");
-            FileSystemWatcher watcher = new FileSystemWatcher();
-            watcher.Path = path;
-            watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.LastAccess | NotifyFilters.FileName | NotifyFilters.DirectoryName;
-            watcher.EnableRaisingEvents = true;
-            watcher.Filter = "*.*";
-            watcher.Created += new FileSystemEventHandler(OnChanged);
-            watcher.Deleted += new FileSystemEventHandler(OnDelete);
-            watcher.Renamed += new RenamedEventHandler(OnRenamed);
-            watcher.Changed += new FileSystemEventHandler(Changed);
+            using (FileSystemWatcher watcher = new FileSystemWatcher())
+            {
+                Console.WriteLine("Включён режим наблюдателя");
+                watcher.Path = path;
+                watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.LastAccess | NotifyFilters.FileName | NotifyFilters.DirectoryName;
 
-            watcher.EnableRaisingEvents = true;
-            Console.WriteLine("Нажмите q для выхода из программы.");
+                watcher.Filter = "*.txt";
+                FileSystemEventHandler fileCreateEventHandler = new FileSystemEventHandler(OnChanged);
+                FileSystemEventHandler fileDeleteEventHandler = new FileSystemEventHandler(OnDelete);
+                RenamedEventHandler fileRenameEventHandler = new RenamedEventHandler(OnRenamed);
+                FileSystemEventHandler fileChangedEventHandler = new FileSystemEventHandler(Changed);
+                watcher.Created += fileCreateEventHandler;
+                watcher.Deleted += fileDeleteEventHandler;
+                watcher.Renamed += fileRenameEventHandler;
+                watcher.Changed += fileChangedEventHandler;
+
+                watcher.EnableRaisingEvents = true;
+                Console.WriteLine("Нажмите q для выхода из программы.");
+                while (Console.Read() != 'q') ;
+                watcher.Created -= fileCreateEventHandler;
+                watcher.Deleted -= fileDeleteEventHandler;
+                watcher.Renamed -= fileRenameEventHandler;
+                watcher.Changed -= fileChangedEventHandler;
+            }
+            //we can and IDisposible work with
+            //watcher.Dispose();
         }
         private static void Changed(object sender, FileSystemEventArgs e)
         {
@@ -65,15 +82,74 @@ namespace Task2
 
         static void CopyDir(string FromDir, string ToDir)
         {
-            Directory.CreateDirectory(ToDir);
-            foreach (string s1 in Directory.GetFiles(FromDir))
+            String[] files = Directory.GetFiles(FromDir, "*.txt");
+
+            //refaire les . et / par les espaces
+            ToDir += '\\' + SetDirName(DateTime.Now.ToString("MM/dd/yyyy HH:mm"));
+            CreateDirectory(ToDir);
+            foreach (string currentFile in files)
             {
-                string s2 = ToDir + "\\" + Path.GetFileName(s1);
-                File.Copy(s1, s2);
+                string fileName = currentFile.Substring(FromDir.Length + 1);
+                string sourceFileName = Path.Combine(FromDir, fileName);
+                string destFileName = Path.Combine(ToDir, fileName);
+                File.Copy(sourceFileName, destFileName, true);
             }
-            foreach (string s in Directory.GetDirectories(FromDir))
+        }
+
+        static string SetDirName (string dir)
+        {
+            string result = "";
+            Regex regex = new Regex(@":");
+            MatchCollection matches = regex.Matches(dir);
+            foreach(Match match in matches)
             {
-                CopyDir(s, ToDir + "\\" + Path.GetFileName(s));
+                string val = match.Value;
+                result = dir.Replace(match.Value, " ");
+            }
+
+            return result;
+        }
+        static void CreateDirectory(string path)
+        {
+            try
+            {
+                //Determine whether the directory exists
+                if (Directory.Exists(path))
+                {
+                    Console.WriteLine("Путь уже существует.");
+                    return;
+                }
+
+                //try to create the directory
+                DirectoryInfo di = Directory.CreateDirectory(path);
+                Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(path));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The process failed: {0}", e.ToString());
+            }
+        }
+
+        static void RoolBackFile(String time, string FromDir, string ToDir)
+        {
+            string dir = FromDir + '\\' + time; 
+            String[] files = Directory.GetFiles(dir, "*.txt");
+            DeleteFileFolder(ToDir);
+            foreach (string currentFile in files)
+            {
+                string fileName = Path.GetFileName(currentFile);
+                string sourceFileName = Path.Combine(dir, fileName);
+                string destFileName = Path.Combine(ToDir, fileName);
+                File.Copy(sourceFileName, destFileName, true);
+            }
+        }
+
+        static void DeleteFileFolder(string dir) 
+        {
+            DirectoryInfo di = new DirectoryInfo(dir);
+            foreach (FileInfo file in di.GetFiles()) 
+            {
+                file.Delete();
             }
         }
     }
