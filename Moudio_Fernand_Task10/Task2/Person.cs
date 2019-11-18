@@ -4,85 +4,40 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
-    public class PersonTimeArgs : EventArgs
-    {
-        public Person Person { get; set; }
-    }
-    public delegate void Message(object source, PersonTimeArgs args);
+    public delegate void OnCame(Person p, DateTime time);
+    public delegate void OnLeave(Person p);
     public class Person
     {
-        private string name;
-        private int time;
+        public string Name { get; set; }
+        public DateTime Time { get; set; }
+        public event OnCame OnCame;
+        public event OnLeave OnLeave;
 
-        //public string Name { get { return this.name; } }
-        public string Name { get ; set; }
-        //public int Time { get { return this.time; } }
-        public int Time { get; set; }
-        public void Greet(object source, PersonTimeArgs person)
+        public void GoToWork()
         {
-            int time = person.Person.time;
-            string nextName = person.Person.name;
-            if (time < 12)
-                Console.WriteLine("Good Morning, {0}!, {1} said.", nextName, Name);
-            else if ((time > 11) && (time < 18))
-                Console.WriteLine("Good Afternoon, {0}!, {1} said.", nextName, Name);
+            //logic
+            OnCame?.Invoke(this, Time);
+        }
+
+        public void GoHome()
+        {
+            // logic
+            OnLeave?.Invoke(this);
+        }
+
+        public void SayHello(string otherPerson, DateTime time)
+        {
+            if (time.Hour < 12)
+                Console.WriteLine("Good Morning, {0}!, {1} said.", otherPerson, Name);
+            else if ((time.Hour > 11) && (time.Hour < 18))
+                Console.WriteLine("Good Afternoon, {0}!, {1} said.", otherPerson, Name);
             else
-                Console.WriteLine("Good Evening, {0}!, {1} said.", nextName, Name);
+                Console.WriteLine("Good Evening, {0}!, {1} said.", otherPerson, Name);
         }
 
-        public void Forgive(object source, PersonTimeArgs person)
+        public void SayGoodBye(string otherName)
         {
-            Console.WriteLine("Good bye, {0}!, {1} said.", person.Person.name, this.name);
-        }
-
-        public event Message Came;
-
-        public event Message GoHome;
-
-        public void OnCame()
-        {
-            Came?.Invoke(this, new PersonTimeArgs() { Person = this });
-        }
-
-        public void OnGoHome()
-        {
-            GoHome?.Invoke(this, new PersonTimeArgs() { Person = this });
-        }
-
-        public Person(string name, int time)
-        {
-            this.name = name;
-            this.time = time;
-        }
-
-        private void SetOnCame()
-        {
-            Thread.Sleep(3000);
-            Console.WriteLine(Name + " Пришел");
-        }
-        private void SetOnGoHome()
-        {
-            Thread.Sleep(6000);
-            Console.WriteLine(Name + " идет домой");
-        }
-        public Person()
-        {
-            var firstTask = Task.Factory.StartNew(() => {
-                SetOnCame();
-                
-                }, TaskCreationOptions.AttachedToParent)
-                .ContinueWith((prevTask) => {
-                    prevTask.Wait();
-                    Task.WaitAll(prevTask);
-                    SetOnGoHome();
-                });
-
-            //Task.Factory.StartNew(firstTask)(() =>
-            //{
-            //    Thread.Sleep(6000);
-            //    Console.WriteLine(Name + " идет домой");
-            //    OnGoHome(new Person(Name, Time));
-            //})
+            Console.WriteLine("Good bye, {0}!, {1} said.", otherName, Name);
         }
     }
 }
