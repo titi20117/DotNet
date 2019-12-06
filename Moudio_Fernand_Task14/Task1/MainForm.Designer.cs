@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.ctlFile = new System.Windows.Forms.ToolStripMenuItem();
             this.ctlFileInsert = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,17 +51,17 @@
             this.ctlTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.ctlUsers = new System.Windows.Forms.DataGridView();
-            this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserBirthdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserAwards = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ctlAwards = new System.Windows.Forms.DataGridView();
             this.AwardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AwardTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AwardDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserBirthdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserAwards = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mainMenu.SuspendLayout();
             this.ctlTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -215,7 +216,7 @@
             this.ctlUsers.BackgroundColor = System.Drawing.Color.MintCream;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -231,7 +232,7 @@
             this.UserAwards});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -240,10 +241,82 @@
             this.ctlUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctlUsers.Location = new System.Drawing.Point(3, 3);
             this.ctlUsers.Name = "ctlUsers";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ctlUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.ctlUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ctlUsers.Size = new System.Drawing.Size(786, 297);
             this.ctlUsers.TabIndex = 0;
-            this.ctlUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ctlUsers_CellClick);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.ctlAwards);
+            this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(792, 303);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Awards";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // ctlAwards
+            // 
+            this.ctlAwards.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ctlAwards.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.ctlAwards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ctlAwards.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.AwardID,
+            this.AwardTitle,
+            this.AwardDescription});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ctlAwards.DefaultCellStyle = dataGridViewCellStyle5;
+            this.ctlAwards.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctlAwards.Location = new System.Drawing.Point(3, 3);
+            this.ctlAwards.Name = "ctlAwards";
+            this.ctlAwards.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ctlAwards.Size = new System.Drawing.Size(786, 297);
+            this.ctlAwards.TabIndex = 0;
+            // 
+            // AwardID
+            // 
+            this.AwardID.DataPropertyName = "ID";
+            this.AwardID.HeaderText = "ID";
+            this.AwardID.Name = "AwardID";
+            this.AwardID.ReadOnly = true;
+            this.AwardID.Width = 50;
+            // 
+            // AwardTitle
+            // 
+            this.AwardTitle.DataPropertyName = "Title";
+            this.AwardTitle.HeaderText = "Title";
+            this.AwardTitle.Name = "AwardTitle";
+            this.AwardTitle.Width = 200;
+            // 
+            // AwardDescription
+            // 
+            this.AwardDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.AwardDescription.DataPropertyName = "Description";
+            this.AwardDescription.HeaderText = "Description";
+            this.AwardDescription.Name = "AwardDescription";
             // 
             // UserID
             // 
@@ -286,73 +359,8 @@
             this.UserAwards.DataPropertyName = "Award";
             this.UserAwards.HeaderText = "Awards";
             this.UserAwards.Name = "UserAwards";
-            this.UserAwards.Text = "Show";
-            this.UserAwards.UseColumnTextForButtonValue = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.ctlAwards);
-            this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 303);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Awards";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // ctlAwards
-            // 
-            this.ctlAwards.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ctlAwards.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.ctlAwards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ctlAwards.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.AwardID,
-            this.AwardTitle,
-            this.AwardDescription});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ctlAwards.DefaultCellStyle = dataGridViewCellStyle4;
-            this.ctlAwards.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctlAwards.Location = new System.Drawing.Point(3, 3);
-            this.ctlAwards.Name = "ctlAwards";
-            this.ctlAwards.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ctlAwards.Size = new System.Drawing.Size(786, 297);
-            this.ctlAwards.TabIndex = 0;
-            // 
-            // AwardID
-            // 
-            this.AwardID.DataPropertyName = "ID";
-            this.AwardID.HeaderText = "ID";
-            this.AwardID.Name = "AwardID";
-            this.AwardID.ReadOnly = true;
-            this.AwardID.Width = 50;
-            // 
-            // AwardTitle
-            // 
-            this.AwardTitle.DataPropertyName = "Title";
-            this.AwardTitle.HeaderText = "Title";
-            this.AwardTitle.Name = "AwardTitle";
-            this.AwardTitle.Width = 200;
-            // 
-            // AwardDescription
-            // 
-            this.AwardDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.AwardDescription.DataPropertyName = "Description";
-            this.AwardDescription.HeaderText = "Description";
-            this.AwardDescription.Name = "AwardDescription";
+            this.UserAwards.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.UserAwards.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MainForm
             // 
@@ -399,18 +407,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AwardID;
         private System.Windows.Forms.DataGridViewTextBoxColumn AwardTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn AwardDescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserFirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserLastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserBirthdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserAge;
-        private System.Windows.Forms.DataGridViewButtonColumn UserAwards;
         private System.Windows.Forms.ToolStripMenuItem ctlFileInsertUser;
         private System.Windows.Forms.ToolStripMenuItem ctlFileInsertAward;
         private System.Windows.Forms.ToolStripMenuItem ctlFileEditUser;
         private System.Windows.Forms.ToolStripMenuItem ctlFileEditAward;
         private System.Windows.Forms.ToolStripMenuItem ctlFileRemoveUser;
         private System.Windows.Forms.ToolStripMenuItem ctlFileRemoveAward;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserLastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserBirthdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserAwards;
     }
 }
 

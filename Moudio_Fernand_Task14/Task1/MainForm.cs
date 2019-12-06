@@ -52,75 +52,75 @@ namespace Task1
                 Title = "Padma Bhushan",
                 Description = "It is to recognize distinguished service of a high order to the nation"
             });
-            
-            
+
+
             _users.Add(new User()
             {
                 ID = 1,
                 FirstName = "Antoinette Charlotte",
                 LastName = "Agoume Moudio",
                 Birthdate = new DateTime(1983, 02, 26),
-                ListAward = new BindingList<Awards> { _awards[0], _awards[1]}
-            });
-               
-            _users.Add(new User() 
-            { 
-                ID = 2, 
-                FirstName = "Jean Pierre", 
-                LastName = "Njoli Moudio", 
-                Birthdate = new DateTime(1984, 09, 06),
-                //ListAward = _awards.Where(award => award.ID == 2).ToList()
-            });
-            _users.Add(new User() 
-            { 
-                ID = 3, 
-                FirstName = "Guy Honore", 
-                LastName = "Ndeme Moudio", 
-                Birthdate = new DateTime(1986, 09, 08),
-                //ListAward = _awards.Where(award => award.ID == 1 ||award.ID == 2).ToList()
-            });
-            _users.Add(new User() 
-            { 
-                ID = 4, 
-                FirstName = "Fernand Elisee", 
-                LastName = "Moudio Moudio", 
-                Birthdate = new DateTime(1992, 01, 22),
-                //ListAward = _awards.Where(award => award.ID == 3).ToList()
-            });
-            _users.Add(new User() 
-            { 
-                ID = 5, 
-                FirstName = "Vanessa", 
-                LastName = "Mouli Moudio", 
-                Birthdate = new DateTime(1993, 09, 10),
-                //ListAward = _awards.Where(award => award.ID == 1).ToList()
-            });
-            _users.Add(new User() 
-            { 
-                ID = 6, 
-                FirstName = "Marie Elisabeth", 
-                LastName = "Moudio Imondi", 
-                Birthdate = new DateTime(1997, 10, 27),
-                //ListAward = _awards.Where(award => award.ID == 4).ToList()
-            });
-            _users.Add(new User() 
-            { 
-                ID = 7, 
-                FirstName = "Charles Rene", 
-                LastName = "Moudio Moudio", 
-                Birthdate = new DateTime(2002, 03, 20),
-                //ListAward = _awards.Where(award => award.ID == 2).ToList()
-            });
-            _users.Add(new User() 
-            { 
-                ID = 8, 
-                FirstName = "Maroufatou", 
-                LastName = "Moudio", 
-                Birthdate = new DateTime(1999, 08, 26),
-                //ListAward = _awards.Where(award => award.ID == 1).ToList()
+                ListAward = new BindingList<int> { _awards[0].ID, _awards[1].ID }
             });
 
-            
+            _users.Add(new User()
+            {
+                ID = 2,
+                FirstName = "Jean Pierre",
+                LastName = "Njoli Moudio",
+                Birthdate = new DateTime(1984, 09, 06),
+                ListAward = new BindingList<int> { _awards[1].ID }
+            });
+            _users.Add(new User()
+            {
+                ID = 3,
+                FirstName = "Guy Honore",
+                LastName = "Ndeme Moudio",
+                Birthdate = new DateTime(1986, 09, 08),
+                ListAward = new BindingList<int> { _awards[2].ID }
+            });
+            _users.Add(new User()
+            {
+                ID = 4,
+                FirstName = "Fernand Elisee",
+                LastName = "Moudio Moudio",
+                Birthdate = new DateTime(1992, 01, 22),
+                ListAward = new BindingList<int> { _awards[1].ID }
+            });
+            _users.Add(new User()
+            {
+                ID = 5,
+                FirstName = "Vanessa",
+                LastName = "Mouli Moudio",
+                Birthdate = new DateTime(1993, 09, 10),
+                ListAward = new BindingList<int> { _awards[1].ID }
+            });
+            _users.Add(new User()
+            {
+                ID = 6,
+                FirstName = "Marie Elisabeth",
+                LastName = "Moudio Imondi",
+                Birthdate = new DateTime(1997, 10, 27),
+                ListAward = new BindingList<int> { _awards[3].ID }
+            });
+            _users.Add(new User()
+            {
+                ID = 7,
+                FirstName = "Charles Rene",
+                LastName = "Moudio Moudio",
+                Birthdate = new DateTime(2002, 03, 20),
+                ListAward = new BindingList<int> { _awards[1].ID }
+            });
+            _users.Add(new User()
+            {
+                ID = 8,
+                FirstName = "Maroufatou",
+                LastName = "Moudio",
+                Birthdate = new DateTime(1999, 08, 26),
+                ListAward = new BindingList<int> { _awards[1].ID }
+            });
+
+
             SortUsersByFirstNameAsc();
             ctlUsers.DataSource = _users;
             ctlAwards.DataSource = _awards;
@@ -186,7 +186,7 @@ namespace Task1
 
         private void EditSelectedAward()
         {
-            if(ctlAwards.SelectedRows.Count > 0)
+            if (ctlAwards.SelectedRows.Count > 0)
             {
                 Awards award = (Awards)ctlAwards.SelectedCells[0].OwningRow.DataBoundItem;
                 AwardForm form = new AwardForm(award);
@@ -201,7 +201,7 @@ namespace Task1
 
         private void EditSelectedUser()
         {
-            if(ctlUsers.SelectedCells.Count > 0)
+            if (ctlUsers.SelectedCells.Count > 0)
             {
                 User user = (User)ctlUsers.SelectedCells[0].OwningRow.DataBoundItem;
 
@@ -236,7 +236,7 @@ namespace Task1
 
         private void RemoveSelectedUser()
         {
-            if(ctlUsers.SelectedCells.Count > 0)
+            if (ctlUsers.SelectedCells.Count > 0)
             {
                 User user = (User)ctlUsers.SelectedCells[0].OwningRow.DataBoundItem;
                 _users.Remove(user);
@@ -248,26 +248,9 @@ namespace Task1
             Close();
         }
 
-        private void ctlUsers_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            MessageBox.Show(e.ColumnIndex.ToString());
-            if(e.ColumnIndex == 0)
-            {
-                ShowUserAwards();
-            }
-        }
+        //private void ctlUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
 
-        private void ShowUserAwards()
-        {
-            List<Awards> list = new List<Awards>();
-            
-            UserAwardForm userAwardForm = new UserAwardForm(_awards, _users);
-            userAwardForm.Show();
-            Awards award = new Awards();
-            award.ID = userAwardForm.ID;
-            award.Title = userAwardForm.Title;
-            award.Description = userAwardForm.Description;
-            //if (userAwardForm.ShowDialog(this) == DialogResult.OK) { }assouma 
-        }
+        //}
     }
 }
