@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UserAwards.DAL
 {
-    public class Data
+    internal class Data
     {
         public static List<User> UserList = new List<User>();
 

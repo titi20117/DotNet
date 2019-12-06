@@ -29,26 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lblAwardID = new System.Windows.Forms.Label();
             this.lblAwardTitle = new System.Windows.Forms.Label();
             this.lblAwardDescription = new System.Windows.Forms.Label();
             this.txtAwardTitle = new System.Windows.Forms.TextBox();
             this.txtAwardDescription = new System.Windows.Forms.TextBox();
             this.btnAwardOK = new System.Windows.Forms.Button();
             this.btnAwardCancel = new System.Windows.Forms.Button();
-            this.txtAwardID = new System.Windows.Forms.TextBox();
             this.errorProviderAward = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAward)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblAwardID
-            // 
-            this.lblAwardID.AutoSize = true;
-            this.lblAwardID.Location = new System.Drawing.Point(28, 40);
-            this.lblAwardID.Name = "lblAwardID";
-            this.lblAwardID.Size = new System.Drawing.Size(18, 13);
-            this.lblAwardID.TabIndex = 0;
-            this.lblAwardID.Text = "ID";
             // 
             // lblAwardTitle
             // 
@@ -74,8 +63,6 @@
             this.txtAwardTitle.Name = "txtAwardTitle";
             this.txtAwardTitle.Size = new System.Drawing.Size(224, 20);
             this.txtAwardTitle.TabIndex = 4;
-            this.txtAwardTitle.Validating += new System.ComponentModel.CancelEventHandler(this.txtAwardTitle_Validating);
-            this.txtAwardTitle.Validated += new System.EventHandler(this.txtAwardTitle_Validated);
             // 
             // txtAwardDescription
             // 
@@ -83,8 +70,6 @@
             this.txtAwardDescription.Name = "txtAwardDescription";
             this.txtAwardDescription.Size = new System.Drawing.Size(224, 20);
             this.txtAwardDescription.TabIndex = 5;
-            this.txtAwardDescription.Validating += new System.ComponentModel.CancelEventHandler(this.txtAwardDescription_Validating);
-            this.txtAwardDescription.Validated += new System.EventHandler(this.txtAwardDescription_Validated);
             // 
             // btnAwardOK
             // 
@@ -106,15 +91,7 @@
             this.btnAwardCancel.TabIndex = 7;
             this.btnAwardCancel.Text = "Cancel";
             this.btnAwardCancel.UseVisualStyleBackColor = true;
-            // 
-            // txtAwardID
-            // 
-            this.txtAwardID.Location = new System.Drawing.Point(118, 40);
-            this.txtAwardID.Name = "txtAwardID";
-            this.txtAwardID.Size = new System.Drawing.Size(100, 20);
-            this.txtAwardID.TabIndex = 8;
-            this.txtAwardID.Validating += new System.ComponentModel.CancelEventHandler(this.txtAwardID_Validating);
-            this.txtAwardID.Validated += new System.EventHandler(this.txtAwardID_Validated);
+            this.btnAwardCancel.Click += new System.EventHandler(this.BtnAwardCancel_Click);
             // 
             // errorProviderAward
             // 
@@ -126,21 +103,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(365, 221);
-            this.Controls.Add(this.txtAwardID);
             this.Controls.Add(this.btnAwardCancel);
             this.Controls.Add(this.btnAwardOK);
             this.Controls.Add(this.txtAwardDescription);
             this.Controls.Add(this.txtAwardTitle);
             this.Controls.Add(this.lblAwardDescription);
             this.Controls.Add(this.lblAwardTitle);
-            this.Controls.Add(this.lblAwardID);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AwardForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AwardForm";
-            this.Load += new System.EventHandler(this.AwardForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderAward)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -148,15 +122,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblAwardID;
         private System.Windows.Forms.Label lblAwardTitle;
         private System.Windows.Forms.Label lblAwardDescription;
         private System.Windows.Forms.TextBox txtAwardTitle;
         private System.Windows.Forms.TextBox txtAwardDescription;
         private System.Windows.Forms.Button btnAwardOK;
         private System.Windows.Forms.Button btnAwardCancel;
-        private System.Windows.Forms.TextBox txtAwardID;
         private System.Windows.Forms.ErrorProvider errorProviderAward;
     }
 }

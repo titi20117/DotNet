@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.ctlFile = new System.Windows.Forms.ToolStripMenuItem();
             this.ctlFileInsert = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +55,7 @@
             this.UserLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserBirthdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserAwards = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.UserAwards = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ctlAwards = new System.Windows.Forms.DataGridView();
             this.AwardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -213,14 +213,14 @@
             // ctlUsers
             // 
             this.ctlUsers.BackgroundColor = System.Drawing.Color.MintCream;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ctlUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ctlUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.ctlUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ctlUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UserID,
@@ -229,21 +229,20 @@
             this.UserBirthdate,
             this.UserAge,
             this.UserAwards});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ctlUsers.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ctlUsers.DefaultCellStyle = dataGridViewCellStyle6;
             this.ctlUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctlUsers.Location = new System.Drawing.Point(3, 3);
             this.ctlUsers.Name = "ctlUsers";
             this.ctlUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ctlUsers.Size = new System.Drawing.Size(786, 297);
             this.ctlUsers.TabIndex = 0;
-            this.ctlUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ctlUsers_CellClick);
             // 
             // UserID
             // 
@@ -286,8 +285,8 @@
             this.UserAwards.DataPropertyName = "Award";
             this.UserAwards.HeaderText = "Awards";
             this.UserAwards.Name = "UserAwards";
-            this.UserAwards.Text = "Show";
-            this.UserAwards.UseColumnTextForButtonValue = true;
+            this.UserAwards.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.UserAwards.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // tabPage2
             // 
@@ -304,27 +303,27 @@
             // ctlAwards
             // 
             this.ctlAwards.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ctlAwards.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ctlAwards.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.ctlAwards.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ctlAwards.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.AwardID,
             this.AwardTitle,
             this.AwardDescription});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ctlAwards.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ctlAwards.DefaultCellStyle = dataGridViewCellStyle8;
             this.ctlAwards.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctlAwards.Location = new System.Drawing.Point(3, 3);
             this.ctlAwards.Name = "ctlAwards";
@@ -367,7 +366,6 @@
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "Каталог";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             this.ctlTab.ResumeLayout(false);
@@ -399,18 +397,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AwardID;
         private System.Windows.Forms.DataGridViewTextBoxColumn AwardTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn AwardDescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserFirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserLastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserBirthdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserAge;
-        private System.Windows.Forms.DataGridViewButtonColumn UserAwards;
         private System.Windows.Forms.ToolStripMenuItem ctlFileInsertUser;
         private System.Windows.Forms.ToolStripMenuItem ctlFileInsertAward;
         private System.Windows.Forms.ToolStripMenuItem ctlFileEditUser;
         private System.Windows.Forms.ToolStripMenuItem ctlFileEditAward;
         private System.Windows.Forms.ToolStripMenuItem ctlFileRemoveUser;
         private System.Windows.Forms.ToolStripMenuItem ctlFileRemoveAward;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserFirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserLastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserBirthdate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserAwards;
     }
 }
 

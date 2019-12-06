@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,125 +8,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UserAwards.BLL;
 
 namespace Task1
 {
     public partial class UserForm : Form
     {
-        private readonly bool _createNew = true;
-        public int ID { get; private set; }
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
-        public DateTime Birthdate { get; private set; }
+        private User currentUser;
+        private readonly AwardsBL awardsBL;
+        private readonly AwardingUsersBL awardingUsersBL;
         public UserForm()
         {
+            awardsBL = new AwardsBL();
+            awardingUsersBL = new AwardingUsersBL();
             InitializeComponent();
+            cbBoxAwards.Enabled = false;
+            btnAddUserAward.Enabled = false;
+            btnDeleteUserAward.Enabled = false;
         }
 
         public UserForm(User user)
         {
+            awardsBL = new AwardsBL();
+            awardingUsersBL = new AwardingUsersBL();
             InitializeComponent();
-
-            ID = user.ID;
-            FirstName = user.FirstName;
-            LastName = user.LastName;
-            Birthdate = user.Birthdate;
-
-            _createNew = false;
+            this.currentUser = user;
+            LoadUserData();
         }
 
-        private void UserForm_Load(object sender, EventArgs e)
+        private void LoadUserData()
         {
-            textUserID.Text = ID.ToString();
-            textUserFirstName.Text = FirstName;
-            textUserLastName.Text = LastName;
-            dateTimePicker1.Text = Birthdate.ToShortTimeString();
-
-            if (_createNew)
-            {
-                Text = "Registration of a new student";
-                btnUserOK.Text = "Create";
-            }
-            else
-            {
-                Text = "Editing user record";
-                btnUserOK.Text = "Update";
-            }
+            UserFirstNameBox.Text = currentUser.FirstName;
+            UserLastNameBox.Text = currentUser.LastName;
+            dateTimePicker1.Value = currentUser.Birthdate;
+            cbBoxAwards.DataSource = awardsBL.GetAwardIdList();
         }
 
         private void btnUserOK_Click(object sender, EventArgs e)
         {
-            DialogResult = ValidateChildren() ? DialogResult.OK : DialogResult.None;
+            DialogResult = DialogResult.OK;
         }
 
-        private void textUserFirstName_Validating(object sender, CancelEventArgs e)
+        private void BtnUserCancel_Click(object sender, EventArgs e)
         {
-            string input = textUserFirstName.Text.Trim();
+            Close();
+        }
 
-            if (String.IsNullOrEmpty(input))
+        private void BtnAddUserAward_Click(object sender, EventArgs e)
+        {
+            bool flag = awardingUsersBL.CheckAwardId(currentUser.ID, Int32.Parse(cbBoxAwards.Text));
+            if (flag == true)
             {
-                errorProvider.SetError(textUserFirstName, "value is not correct");
-                e.Cancel = true;
+                awardingUsersBL.AddAwardForUser(currentUser.ID, Int32.Parse(cbBoxAwards.Text));
             }
             else
             {
-                errorProvider.SetError(textUserFirstName, String.Empty);
-                e.Cancel = false;
+                MessageBox.Show("This award is already given!");
             }
         }
 
-        private void textUserFirstName_Validated(object sender, EventArgs e)
+        private void BtnDeleteUserAward_Click(object sender, EventArgs e)
         {
-            FirstName = textUserFirstName.Text.Trim();
-        }
-
-        private void textUserLastName_Validating(object sender, CancelEventArgs e)
-        {
-            string input = textUserLastName.Text.Trim();
-
-            if (String.IsNullOrEmpty(input))
-            {
-                errorProvider.SetError(textUserLastName, "value is not correct");
-                e.Cancel = true;
-            }
-            else
-            {
-                errorProvider.SetError(textUserLastName, String.Empty);
-                e.Cancel = false;
-            }
-        }
-
-        private void textUserLastName_Validated(object sender, EventArgs e)
-        {
-            LastName = textUserLastName.Text.Trim();
-        }
-
-        private void dateTimePicker1_Validated(object sender, EventArgs e)
-        {
-            Birthdate = dateTimePicker1.Value;
-        }
-
-        private void textUserID_Validating(object sender, CancelEventArgs e)
-        {
-            string input = textUserID.Text.Trim();
-            int value;
-            if (String.IsNullOrEmpty(input) || (!Int32.TryParse(input, out value)))
-            {
-                errorProvider.SetError(textUserID, "value is not correct");
-                e.Cancel = true;
-            }
-            else
-            {
-                errorProvider.SetError(textUserID, String.Empty);
-                e.Cancel = false;
-            }
-        }
-
-        private void textUserID_Validated(object sender, EventArgs e)
-        {
-            string value = textUserID.Text;
-            ID = Int32.Parse(value);
-
+            awardingUsersBL.RemoveAwardFromUser(currentUser.ID, Int32.Parse(cbBoxAwards.Text));
         }
     }
 }

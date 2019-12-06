@@ -14,6 +14,6 @@ namespace Entities
         public string LastName { get; set; }
         public DateTime Birthdate { get; set; }
         public int Age { get { return DateTime.Now.Year - Birthdate.Year; } }
-        public BindingList<Awards> ListAward { get; set; }
+        public List<int> ListAward { get; set; }
     }
 }

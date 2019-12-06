@@ -41,7 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AwardingUsersBL.cs" />
+    <Compile Include="AwardsBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsersBL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{3c33fe80-35c6-4da4-a6f9-d6ae3566d105}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserAwards.DAL\UserAwards.DAL.csproj">
+      <Project>{774ffe50-1cc1-4675-9d20-531e22e0dfd2}</Project>
+      <Name>UserAwards.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -106,5 +106,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{3c33fe80-35c6-4da4-a6f9-d6ae3566d105}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserAwards.BLL\UserAwards.BLL.csproj">
+      <Project>{e55e6718-19cb-48e7-a390-6a50bdd2eb1a}</Project>
+      <Name>UserAwards.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserAwards.DAL\UserAwards.DAL.csproj">
+      <Project>{774FFE50-1CC1-4675-9D20-531E22E0DFD2}</Project>
+      <Name>UserAwards.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
