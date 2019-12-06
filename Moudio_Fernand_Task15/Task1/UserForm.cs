@@ -17,6 +17,9 @@ namespace Task1
         private User currentUser;
         private readonly AwardsBL awardsBL;
         private readonly AwardingUsersBL awardingUsersBL;
+        public string FirstName { get { return UserFirstNameBox.Text; } }
+        public string LastName { get { return UserLastNameBox.Text; } }
+        public DateTime BirthDay { get { return dateTimePicker1.Value; } }
         public UserForm()
         {
             awardsBL = new AwardsBL();

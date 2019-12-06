@@ -32,41 +32,29 @@ namespace Task1
             {
                 userService.CreateNewUser
                     (
-                    newUserForm.Ke,
-                    newUserForm.UserLastNameBox.Text,
-                    DateTime.Parse(newUserForm.UserBirthDayBox.Text)
+                    newUserForm.FirstName,
+                    newUserForm.LastName,
+                    newUserForm.BirthDay
                     );
 
             }
             UpdateUserDataGridView();
-            RegisterNewUser();
         }
 
         private void ctlFileInsertAward_Click(object sender, EventArgs e)
         {
             AwardForm NewAwardForm = new AwardForm();
-            NewAwardForm.txt
             if (NewAwardForm.ShowDialog(this) == DialogResult.OK)
             {
                 awardService.CreateNewAward
                     (
-                    NewAwardForm.AwardTitleBox.Text,
-                    NewAwardForm.AwardDescriptionBox.Text
+                    NewAwardForm.Title,
+                    NewAwardForm.Description
                     );
             }
             UpdateAwardDataGridView();
-            RegisterNewAward();
         }
 
-        private void RegisterNewAward()
-        {
-            
-        }
-
-        private void RegisterNewUser()
-        {
-            
-        }
 
         private void ctlFileEditUser_Click(object sender, EventArgs e)
         {

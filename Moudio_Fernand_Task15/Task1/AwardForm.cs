@@ -14,6 +14,8 @@ namespace Task1
     public partial class AwardForm : Form
     {
         private Awards currentAward;
+        public string Title { get { return txtAwardTitle.Text; } }
+        public string Description { get { return txtAwardDescription.Text; } }
         public AwardForm()
         {
             InitializeComponent();
