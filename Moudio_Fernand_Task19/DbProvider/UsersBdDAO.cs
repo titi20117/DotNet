@@ -1,20 +1,71 @@
 ﻿using Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 
 namespace DbProvider
 {
     public class UsersBdDAO : IUsersDAO
     {
+        private SqlConnection connection;
+        private List<Users> users = new List<Users>();
+
+        public UsersBdDAO()
+        {
+            connection = InitConnectionUsersAwards.InitConnection();
+        }
         public void Add(Users user)
         {
-            throw new NotImplementedException();
+            if (user == null)
+                throw new ArgumentException("userBd");
+            connection.Open();
+            using (var command = new SqlCommand())
+            {
+                command.CommandText = "AddUser";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Connection = connection;
+
+                command.Parameters.AddWithValue("@FirstName", user.FirstName);
+                command.Parameters.AddWithValue("@LastName", user.LastName);
+                command.Parameters.AddWithValue("@Birthdate", user.BirthDate);
+
+                command.ExecuteNonQuery();
+            }
+
+            connection.Close();
+            users.Add(user);
+            AddAward(user.Id, user.Awards);
         }
 
         public void AddAward(int indexOfUser, string award)
         {
-            throw new NotImplementedException();
+            AwardsBdDAO awardsBd = new AwardsBdDAO();
+            List<int> awardsOfUser = new List<int>();
+            for (int i = 0; i < awardsBd.GetList().Count(); i++)
+            {
+                if (award.Contains(awardsBd.GetList().ToList()[i].Title))
+                {
+                    awardsOfUser.Add(awardsBd.GetList().ToList()[i].Id);
+                }
+            }
+            connection.Open();
+            for (int i = 0; i < awardsOfUser.Count(); i++)
+            {
+                using (var command = new SqlCommand())
+                {
+                    command.CommandText = "AddRewardForUser";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Connection = connection;
+                    command.Parameters.AddWithValue("@idUser", indexOfUser);
+                    command.Parameters.AddWithValue("@idReward", awardsOfUser[i]);
+                    command.ExecuteNonQuery();
+                }
+
+            }
+            connection.Close();
         }
 
         public void Delete(int index)
@@ -24,7 +75,7 @@ namespace DbProvider
 
         public void DeleteAward(int indexOfUser, string award)
         {
-            throw new NotImplementedException();
+            users[indexOfUser].Awards = users[indexOfUser].Awards.Replace(award, "");
         }
 
         public void Edit(int indexOfUser, string firstName, string lastName, DateTime birthdate, string awards)
@@ -34,7 +85,52 @@ namespace DbProvider
 
         public IEnumerable<Users> GetList()
         {
-            throw new NotImplementedException();
+            List<int> valuesOfAwards = new List<int>();
+            AwardsBdDAO awards = new AwardsBdDAO();
+            string title = string.Empty;
+            connection.Open();
+            users.Clear();
+            using (SqlCommand command = new SqlCommand("SELECT * FROM Users", connection))
+            {
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Users user = new Users(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3));
+                    users.Add(user);
+                }
+                reader.Close();
+            }
+            connection.Close();
+            for (int i = 0; i < users.Count(); i++)
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand($"SELECT AwardId FROM UsersAndAwards WHERE UserId = {users[i].Id}", connection))
+                {
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        valuesOfAwards.Add(reader.GetInt32(0));
+                    }
+                    reader.Close();
+                }
+                connection.Close();
+                for (int j = 0; j < valuesOfAwards.Count(); j++)
+                {
+                    for (int k = 0; k < awards.GetList().Count(); k++)
+                    {
+                        if (awards.GetList().ToList()[k].Id == valuesOfAwards[j])
+                        {
+                            title = awards.GetList().ToList()[k].Title;
+                        }
+                    }
+                    users[i].Awards = users[i].Awards + "\n" + title;
+                }
+                valuesOfAwards.Clear();
+
+            }
+
+            return users;
         }
     }
 }
