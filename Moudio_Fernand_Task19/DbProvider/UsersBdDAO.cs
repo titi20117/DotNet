@@ -70,7 +70,20 @@ namespace DbProvider
 
         public void Delete(int index)
         {
-            throw new NotImplementedException();
+            int id = users[index].Id;
+            connection.Open();
+
+            using(var command = new SqlCommand())
+            {
+                command.CommandText = "DeleteUser";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Connection = connection;
+
+                command.Parameters.AddWithValue("@idUser", id);
+                command.ExecuteNonQuery();
+            }
+            connection.Close();
+            GetList();
         }
 
         public void DeleteAward(int indexOfUser, string award)
@@ -80,7 +93,26 @@ namespace DbProvider
 
         public void Edit(int indexOfUser, string firstName, string lastName, DateTime birthdate, string awards)
         {
-            throw new NotImplementedException();
+            int id = users[indexOfUser].Id;
+            connection.Open();
+            using(var command = new SqlCommand())
+            {
+                command.CommandText = "UpdatePersonByID";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Connection = connection;
+
+                command.Parameters.AddWithValue("@idUser", id);
+                command.Parameters.AddWithValue("@newFirstName", firstName);
+                command.Parameters.AddWithValue("@newLastName", lastName);
+                command.Parameters.AddWithValue("@newBirthdate", birthdate);
+                command.ExecuteNonQuery();
+            }
+            connection.Close();
+            AddAward(id, awards);
+            users[indexOfUser].FirstName = firstName;
+            users[indexOfUser].LastName = lastName;
+            users[indexOfUser].BirthDate = birthdate;
+            users[indexOfUser].Awards = awards;
         }
 
         public IEnumerable<Users> GetList()
