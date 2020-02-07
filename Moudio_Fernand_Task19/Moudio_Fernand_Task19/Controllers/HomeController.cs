@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using DbProvider;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moudio_Fernand_Task19.Models;
@@ -20,7 +22,15 @@ namespace Moudio_Fernand_Task19.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var vm = new UsersViewModel();
+            UsersBdDAO context = new UsersBdDAO();
+            var listUsers = context.GetList();
+
+            foreach (var user in listUsers)
+            {
+                vm.ListUsers.Add(user);
+            }
+            return View(vm);
         }
 
         public IActionResult Privacy()

@@ -1,8 +1,35 @@
-﻿@{
+﻿@model UsersViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome in Users-Awards</h1>
+    
+    <table>
+        <caption style="caption-side:top">My Users</caption>
+        <tr>
+            <th>User Names</th>
+            <th>Date of Birth</th>
+            <th>Name of Awards</th>
+            <th>Age</th>
+        </tr>
+        @foreach (var user in Model.ListUsers)
+        {
+            <tr>
+                <td>
+                    @user.FirstName @user.LastName
+                </td>
+                <td>
+                    @user.BirthDate
+                </td>
+                <td>
+                    @user.Awards
+                </td>
+                <td>
+                    @user.Age
+                </td>
+            </tr>
+        }
+    </table>
 </div>

@@ -10,7 +10,7 @@ namespace DbProvider
         public static string GetConnectionString()
         {
             return @"Data Source=fernand.database.windows.net;Initial Catalog=UsersAndRewards;
-                    Persist Security Info=True;User ID=titi20117;Password=***********";
+                    Persist Security Info=True;User ID=titi20117;Password=Emiwx81990";
         }
     }
 }
