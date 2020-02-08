@@ -22,14 +22,23 @@ namespace Moudio_Fernand_Task19.Controllers
 
         public IActionResult Index()
         {
-            var vm = new UsersViewModel();
-            UsersBdDAO context = new UsersBdDAO();
-            var listUsers = context.GetList();
+            var vm = new UsersAndAwardsViewModel();
+
+            UsersBdDAO contextUsers = new UsersBdDAO();
+            AwardsBdDAO contextAwards = new AwardsBdDAO();
+
+            var listUsers = contextUsers.GetList();
+            var listAwards = contextAwards.GetList();
 
             foreach (var user in listUsers)
             {
                 vm.ListUsers.Add(user);
             }
+            foreach (var award in listAwards)
+            {
+                vm.ListAwards.Add(award);
+            }
+
             return View(vm);
         }
 
