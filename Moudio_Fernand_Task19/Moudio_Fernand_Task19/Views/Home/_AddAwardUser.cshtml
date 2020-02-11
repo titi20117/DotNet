@@ -1,0 +1,23 @@
+﻿<div class="d-block text-justify">
+    @using (Html.BeginForm("AddAwardUser", "Home", FormMethod.Post))
+    {
+        <fieldset>
+            <legend>Добавить пользователь награда</legend>
+            <div>
+                <label>Ид пользователь:</label>
+                <input name="id" id="id" required />
+            </div>
+
+            <div>
+                <label>Награда :</label>
+                <input name="awardTitle" id="awardTitle" />
+            </div>
+
+            <div>
+                <input type="submit" value="Submit" />
+            </div>
+
+        </fieldset>
+    }
+</div>
+

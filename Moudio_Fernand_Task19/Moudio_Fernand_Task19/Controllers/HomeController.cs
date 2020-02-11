@@ -52,5 +52,10 @@ namespace Moudio_Fernand_Task19.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public ActionResult CreateNewUser()
+        {
+            return PartialView("_CreateNewUser");
+        }
     }
 }

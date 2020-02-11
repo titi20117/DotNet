@@ -1,0 +1,38 @@
+﻿<div class="d-block text-justify">
+    @using (Html.BeginForm("EditUser", "Home", FormMethod.Post))
+    {
+        <fieldset>
+            <legend>Изменить</legend>
+            <div>
+                <label>Ид :</label>
+                <input name="id" id="id" required />
+            </div>
+            <div>
+                <label>Имя :</label>
+                <input name="firstName" id="firstName" required />
+            </div>
+
+            <div>
+                <label>Фамилия :</label>
+                <input name="lastName" id="lastName" required />
+            </div>
+
+            <div>
+                <label>Дата Рождения :</label>
+                <input name="birthDate" id="birthDate" required />
+            </div>
+
+            <div>
+                <label>Награда :</label>
+                <input name="awardTitle" id="awardTitle" />
+            </div>
+
+            <div>
+                <input type="submit" name="edit" value="Изменить" />
+                <input type="submit" name="delete" value="Удалить" />
+            </div>
+
+        </fieldset>
+    }
+</div>
+

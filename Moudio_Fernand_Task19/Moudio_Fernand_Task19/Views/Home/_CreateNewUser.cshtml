@@ -1,0 +1,38 @@
+﻿
+@*@{
+    ViewData["Title"] = "_CreateNewUser";
+}*@
+
+<div class="d-block text-justify">
+   @using (Html.BeginForm("AddUser", "Home", FormMethod.Post))
+	{
+    <fieldset>
+        <legend>Добавить пользователь</legend>
+        <div>
+            <label>Имя :</label>
+            <input name="firstName" id="firstName" required />
+        </div>
+        
+        <div>
+            <label>Фамилия :</label>
+            <input name="lastName" id="lastName" required />
+        </div>
+        
+        <div>
+            <label>Дата Рождения :</label>
+            <input name="birthDate" id="birthDate" required />
+        </div>
+        
+        <div>
+            <label>Награда :</label>
+            <input name="awardTitle" id="awardTitle" />
+        </div>
+        
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+        
+    </fieldset>
+	}
+</div>
+

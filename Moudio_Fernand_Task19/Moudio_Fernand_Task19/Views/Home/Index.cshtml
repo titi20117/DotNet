@@ -5,25 +5,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Добро-пожаловать</h1>
-    @* where im stoping *@
-    <div class="d-none">
-        @using (Html.BeginForm("AddUser", "Home", FormMethod.Post))
-	    {
-		    <label>Имя :</label>
-            <input name="firstName" id="firstName" required/>
-
-            <label>Фамилия :</label>
-            <input name="lastName" id="lastName" required/>
-
-            <label>Дата Рождения :</label>
-            <input name="birthDate" id="birthDate" required/>
-
-            <label>Награда :</label>
-            <input name="awardTitle" id="awardTitle"/>
-
-            <input type="submit" value="Submit"/>
-	    }
-    </div>
+    @await Html.PartialAsync("_CreateNewUser")
     <div class="row">
         <div class="col-3">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
