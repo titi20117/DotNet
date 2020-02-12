@@ -1,31 +1,27 @@
 ﻿<div class="d-none text-justify modal">
     <div class="modal-content">
-        @using (Html.BeginForm("AddAward", "Home", FormMethod.Post))
+        @using (Html.BeginForm("DeleteUser", "Home", FormMethod.Post))
         {
             <fieldset>
                 <div>
                     <button type="button" class="close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h5>Добавить</h5>
+                    <h5>Удалить</h5>
                 </div>
                 <div>
-                    <label>Название :</label>
-                    <input name="title" id="title" />
-                </div>
-
-                <div>
-                    <label>Описание :</label>
-                    <input name="description" id="description" />
+                    <label>Индекс пользователь :</label>
+                    <input name="idUser" id="idUser" required />
                 </div>
 
                 <div>
-                    <input type="submit" name="edit" value="Добавить" />
+                    <input type="submit" name="delete" value="Удалить" />
                     <button>Отменить</button>
                 </div>
-
             </fieldset>
         }
     </div>
 </div>
+
+
 

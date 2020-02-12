@@ -53,9 +53,44 @@ namespace Moudio_Fernand_Task19.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public ActionResult CreateNewUser()
+        public ActionResult PartialNewUser()
         {
             return PartialView("_CreateNewUser");
+        }
+
+        public ActionResult PartialAddAwardUser()
+        {
+            return PartialView("_AddAwardUser");
+        }
+
+        public ActionResult PartialDelAwardUser()
+        {
+            return PartialView("_DelAwardUser");
+        }
+
+        public ActionResult PartialDelAward()
+        {
+            return PartialView("_DelAward");
+        }
+
+        public ActionResult PartialDelUser()
+        {
+            return PartialView("_DelUser");
+        }
+
+        public ActionResult PartialEditAward()
+        {
+            return PartialView("_EditAward");
+        }
+
+        public ActionResult PartialEditUser()
+        {
+            return PartialView("_EditUser");
+        }
+
+        public ActionResult PartialNewAward()
+        {
+            return PartialView("_NewAward");
         }
     }
 }

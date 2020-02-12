@@ -1,38 +1,45 @@
-﻿<div class="d-block text-justify">
-    @using (Html.BeginForm("EditUser", "Home", FormMethod.Post))
-    {
-        <fieldset>
-            <legend>Изменить</legend>
-            <div>
-                <label>Ид :</label>
-                <input name="id" id="id" required />
-            </div>
-            <div>
-                <label>Имя :</label>
-                <input name="firstName" id="firstName" required />
-            </div>
+﻿<div class="d-none text-justify modal">
+    <div class="modal-content">
+        @using (Html.BeginForm("EditUser", "Home", FormMethod.Post))
+        {
+            <fieldset>
+                <div>
+                    <button type="button" class="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h5>Изменить</h5>
+                </div>
+                <div>
+                    <label>Ид :</label>
+                    <input name="id" id="id" required />
+                </div>
+                <div>
+                    <label>Имя :</label>
+                    <input name="firstName" id="firstName" required />
+                </div>
 
-            <div>
-                <label>Фамилия :</label>
-                <input name="lastName" id="lastName" required />
-            </div>
+                <div>
+                    <label>Фамилия :</label>
+                    <input name="lastName" id="lastName" required />
+                </div>
 
-            <div>
-                <label>Дата Рождения :</label>
-                <input name="birthDate" id="birthDate" required />
-            </div>
+                <div>
+                    <label>Дата Рождения :</label>
+                    <input type="date" name="birthDate" id="birthDate" required />
+                </div>
 
-            <div>
-                <label>Награда :</label>
-                <input name="awardTitle" id="awardTitle" />
-            </div>
+                <div>
+                    <label>Награда :</label>
+                    <input name="awardTitle" id="awardTitle" />
+                </div>
 
-            <div>
-                <input type="submit" name="edit" value="Изменить" />
-                <input type="submit" name="delete" value="Удалить" />
-            </div>
+                <div>
+                    <input type="submit" name="edit" value="Изменить" />
+                    <button>Отменить</button>
+                </div>
 
-        </fieldset>
-    }
+            </fieldset>
+        }
+    </div>
 </div>
 

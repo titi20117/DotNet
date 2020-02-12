@@ -1,23 +1,31 @@
-﻿<div class="d-block text-justify">
-    @using (Html.BeginForm("AddAwardUser", "Home", FormMethod.Post))
-    {
-        <fieldset>
-            <legend>Добавить пользователь награда</legend>
-            <div>
-                <label>Ид пользователь:</label>
-                <input name="id" id="id" required />
-            </div>
+﻿<div class="d-none text-justify modal">
+    <div class="modal-content">
+        @using (Html.BeginForm("AddAwardUser", "Home", FormMethod.Post))
+        {
+            <fieldset>
+                <div>
+                    <button type="button" class="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h5>Добавить пользователь награда</h5>
+                </div>
+                <div>
+                    <label>Ид пользователь:</label>
+                    <input type="text" name="idUser" id="idUser" required />
+                </div>
 
-            <div>
-                <label>Награда :</label>
-                <input name="awardTitle" id="awardTitle" />
-            </div>
+                <div>
+                    <label>Награда :</label>
+                    <input type="text" name="awardTitle" id="awardTitle" required />
+                </div>
 
-            <div>
-                <input type="submit" value="Submit" />
-            </div>
+                <div>
+                    <input type="submit" value="Добавить" />
+                    <button>Отменить</button>
+                </div>
 
-        </fieldset>
-    }
+            </fieldset>
+        }
+    </div>
 </div>
 
