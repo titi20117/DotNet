@@ -1,7 +1,7 @@
 ﻿
 <div class="d-none text-justify modal" id="newUserModal">
     <div class="modal-content">
-        @using (Html.BeginForm("AddUser", "Home", FormMethod.Post))
+        @using (Html.BeginForm("AddNewUser", "Home", FormMethod.Post))
         {
             <fieldset>
                 <div class="modal-header">
@@ -13,22 +13,22 @@
                 <div class="modal-body">
                     <div>
                         <label>Имя :</label>
-                        <input type="text" name="firstName" id="firstName" required />
+                        <input type="text" name="firstName" required />
                     </div>
 
                     <div>
                         <label>Фамилия :</label>
-                        <input type="text" name="lastName" id="lastName" required />
+                        <input type="text" name="lastName" required />
                     </div>
 
                     <div>
                         <label>Дата Рождения :</label>
-                        <input type="date" name="birthDate" id="birthDate" required />
+                        <input type="datetime-local" name="birthDate" required />
                     </div>
 
                     <div>
                         <label>Награда :</label>
-                        <input type="text" name="awardTitle" id="awardTitle" />
+                        <input type="text" name="awardTitle" />
                     </div>
                 </div>
 
