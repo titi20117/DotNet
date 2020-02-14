@@ -41,6 +41,7 @@ namespace Moudio_Fernand_Task19.Controllers
 
             return View(vm);
         }
+
         [HttpPost]
         public IActionResult AddNewUser(string firstName, string lastName, DateTime dateBirth, string award)
         {

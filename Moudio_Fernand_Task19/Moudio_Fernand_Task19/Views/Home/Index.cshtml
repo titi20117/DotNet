@@ -1,108 +1,109 @@
 ﻿@model UsersAndAwardsViewModel
+
 @{
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="text-center">
-        <div class="row">
-            <div class="col-3">
-                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-user-tab" data-toggle="pill" href="#v-pills-user" role="tab" aria-controls="v-pills-user" aria-selected="true">Пользователи</a>
-                    <a class="nav-link" id="v-pills-award-tab" data-toggle="pill" href="#v-pills-award" role="tab" aria-controls="v-pills-award" aria-selected="false">Награды</a>
-                </div>
-
+<div class="text-center">
+    <div class="row">
+        <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-user-tab" data-toggle="pill" href="#v-pills-user" role="tab" aria-controls="v-pills-user" aria-selected="true">Пользователи</a>
+                <a class="nav-link" id="v-pills-award-tab" data-toggle="pill" href="#v-pills-award" role="tab" aria-controls="v-pills-award" aria-selected="false">Награды</a>
             </div>
-            <div class="col-9">
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab">
-                        <div class="text-left">
-                            <button type="button" class="btn btn-primary" id="btnNewUser">
-                                Добавить
-                            </button>
-                        </div>
-                        <table class="table table-striped">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Имена</th>
-                                    <th scope="col">Дата рождения</th>
-                                    <th scope="col">Название награды</th>
-                                    <th scope="col">возраст</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @{
-                                    int i = 1;
-                                    @foreach (var user in Model.ListUsers)
-                                    {
-                                        <tr class="tr-pointer row_OnClick">
-                                            <th scope="row">@i</th>
-                                            <td>
-                                                @user.FirstName @user.LastName
-                                            </td>
-                                            <td>
-                                                @user.BirthDate
-                                            </td>
-                                            <td>
-                                                @user.Awards
-                                            </td>
-                                            <td>
-                                                @user.Age
-                                            </td>
-                                            <td>
-                                                <span title="добавить награда"><i class="fa fa-plus"></i></span>
-                                                <span title="редактировать"><i class="far fa-edit"></i></span>
-                                                <span title="удалить"><i class="fa fa-trash"></i></span>
-                                            </td>
-                                        </tr>
-                                        i++;
-                                    }
-                                }
-                            </tbody>
-                        </table>
+
+        </div>
+        <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab">
+                    <div class="text-left">
+                        <button type="button" class="btn btn-primary" id="btnNewUser">
+                            Добавить
+                        </button>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-award" role="tabpanel" aria-labelledby="v-pills-user-tab">
-                        <div class="text-left">
-                            <button type="button" class="btn btn-primary" id="modalAward">Добавить Награда</button>
-                        </div>
-                        <table class="table table-striped">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Название</th>
-                                    <th>Описание</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @{
-                                    int j = 1;
-                                    @foreach (var award in Model.ListAwards)
-                                    {
-                                        <tr class="tr-pointer row_OnClick">
-                                            <th scope="row">@j</th>
-                                            <td>
-                                                @award.Title
-                                            </td>
-                                            <td>
-                                                @award.Description
-                                            </td>
-                                        </tr>
-                                        j++;
-                                    }
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Имена</th>
+                                <th scope="col">Дата рождения</th>
+                                <th scope="col">Название награды</th>
+                                <th scope="col">возраст</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int i = 1;
+                                @foreach (var user in Model.ListUsers)
+                                {
+                                    <tr class="tr-pointer row_OnClick">
+                                        <th scope="row">@i</th>
+                                        <td>
+                                            @user.FirstName @user.LastName
+                                        </td>
+                                        <td>
+                                            @user.BirthDate
+                                        </td>
+                                        <td>
+                                            @user.Awards
+                                        </td>
+                                        <td>
+                                            @user.Age
+                                        </td>
+                                        <td>
+                                            <span title="добавить награда"><i class="fa fa-plus"></i></span>
+                                            <span title="редактировать"><i class="far fa-edit"></i></span>
+                                            <span title="удалить"><i class="fa fa-trash"></i></span>
+                                        </td>
+                                    </tr>
+                                    i++;
                                 }
-                            </tbody>
-                        </table>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="v-pills-award" role="tabpanel" aria-labelledby="v-pills-user-tab">
+                    <div class="text-left">
+                        <button type="button" class="btn btn-primary" id="modalAward">Добавить Награда</button>
                     </div>
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Название</th>
+                                <th>Описание</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int j = 1;
+                                @foreach (var award in Model.ListAwards)
+                                {
+                                    <tr class="tr-pointer row_OnClick">
+                                        <th scope="row">@j</th>
+                                        <td>
+                                            @award.Title
+                                        </td>
+                                        <td>
+                                            @award.Description
+                                        </td>
+                                    </tr>
+                                    j++;
+                                }
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        @await Html.PartialAsync("_CreateNewUser")
-        @await Html.PartialAsync("_AddAwardUser")
-        @await Html.PartialAsync("_DelUser")
-        @await Html.PartialAsync("_DelAward")
-        @await Html.PartialAsync("_DelAwardUser")
-        @await Html.PartialAsync("_EditAward")
-        @await Html.PartialAsync("_EditUser")
-        @await Html.PartialAsync("_NewAward")
     </div>
+    @await Html.PartialAsync("_CreateNewUser", Model)
+    @await Html.PartialAsync("_AddAwardUser")
+    @await Html.PartialAsync("_DelUser")
+    @await Html.PartialAsync("_DelAward")
+    @await Html.PartialAsync("_DelAwardUser")
+    @await Html.PartialAsync("_EditAward")
+    @await Html.PartialAsync("_EditUser")
+    @await Html.PartialAsync("_NewAward")
+</div>

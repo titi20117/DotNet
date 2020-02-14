@@ -10,6 +10,8 @@ namespace Moudio_Fernand_Task19.Models
     {
         public List<Users> ListUsers { get; set; }
         public List<Awards> ListAwards { get; set; }
+        public Users NewUser { get; set; }
+        public Awards NewAward { get; set; }
         public UsersAndAwardsViewModel()
         {
             ListUsers = new List<Users>();

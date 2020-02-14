@@ -1,4 +1,4 @@
-﻿
+﻿@model UsersAndAwardsViewModel
 <div class="d-none text-justify modal" id="newUserModal">
     <div class="modal-content">
         @using (Html.BeginForm("AddNewUser", "Home", FormMethod.Post))
@@ -13,6 +13,7 @@
                 <div class="modal-body">
                     <div>
                         <label>Имя :</label>
+                        @Html.TextBox()
                         <input type="text" name="firstName" required />
                     </div>
 
@@ -23,7 +24,16 @@
 
                     <div>
                         <label>Дата Рождения :</label>
-                        <input type="datetime-local" name="birthDate" required />
+                        @Html.TextBoxFor(model => model.NewUser.BirthDate, "{0:yyyy-MM-dd}",
+                        new
+                            {
+                                @class = "form-control input-sm datepicker",
+                                @type = "date",
+                                placeholder = "Date of Birth",
+                                id = "txtContactDOB",
+                                max = DateTime.Today.ToString("yyyy-MM-dd")
+                            })
+                        @*<input type="datetime-local" name="birthDate" required />*@
                     </div>
 
                     <div>
