@@ -24,15 +24,15 @@
 
                     <div>
                         <label>Дата Рождения :</label>
-                        @Html.TextBoxFor(model => model.NewUser.BirthDate, "{0:yyyy-MM-dd}",
+                        @Html.TextBoxFor(model => model.DateBirthday, "{0:dd-MM-yyyy}",
                         new
-                            {
-                                @class = "form-control input-sm datepicker",
-                                @type = "date",
-                                placeholder = "Date of Birth",
-                                id = "txtContactDOB",
-                                max = DateTime.Today.ToString("yyyy-MM-dd")
-                            })
+                        {
+                            @class = "form-control input-sm datepicker",
+                            @type = "datetime-local",
+                            placeholder = "Date of Birth",
+                            id = "txtContactDOB",
+                            //max = DateTime.Today.ToString("dd-MM-yyyy")
+                        })
                         @*<input type="datetime-local" name="birthDate" required />*@
                     </div>
 

@@ -46,6 +46,7 @@ namespace Moudio_Fernand_Task19.Controllers
         public IActionResult AddNewUser(string firstName, string lastName, DateTime dateBirth, string award)
         {
             var vm = new NewUserViewModel();
+            string myString = dateBirth.ToString();
             vm.FirstName = firstName;
             vm.LastName = lastName;
             vm.Datebirth = dateBirth;
