@@ -13,8 +13,8 @@
                 <div class="modal-body">
                     <div>
                         <label>Имя :</label>
-                        @Html.TextBox()
-                        <input type="text" name="firstName" required />
+                        @Html.TextBox("firstName", null, new { @class = "form-control" })
+                        @*<input type="text" name="firstName" required />*@
                     </div>
 
                     <div>
